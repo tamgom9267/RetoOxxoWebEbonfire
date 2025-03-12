@@ -1,42 +1,59 @@
 ﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+.header-container
+{
+  display: flex;
+  padding: 10px 20px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: beige;
+
+}
+.logo
+{
+  height: 50px;
+  cursor: pointer;
+  margin: 0;
 }
 
-a {
-  color: #0077cc;
+.logo:hover
+{
+  opacity: 0.8;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.iconos-derecha {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+nav ul
+{
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
 }
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+nav ul li
+{
+  margin: 0 10px;
 }
 
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+nav ul li a
+{
+  text-decoration: none;
 }
 
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+.dropdown-toggle::after {
+  display: none;
+}
+
+.menu_usuario
+{
+  height: 50px;
+  cursor: pointer;
 }
 
 .footer {

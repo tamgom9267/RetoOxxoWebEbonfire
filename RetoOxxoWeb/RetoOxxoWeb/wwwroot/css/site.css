@@ -29,3 +29,56 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+.custom-card {
+  background-color: #ffdda9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  text-align: center;
+}
+
+.card-img-top {
+  height: 150px;
+  object-fit: cover;
+}
+
+.card-title
+{
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.ranking-list-index
+{
+  margin-top: 10px;
+}
+
+.ranking-item
+{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.img-rank
+{
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.ranking-username-index
+{
+  font-size: 18px;
+  font-weight: normal;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.tarjetas-botones
+{
+  text-decoration: none;
+}

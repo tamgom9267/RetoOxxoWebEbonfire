@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - RetoOxxoWeb</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -11,25 +10,28 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">RetoOxxoWeb</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+        <div class="header-container">
+            <a href="/Index" class="navbar-brand">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Oxxo_Logo.svg/1200px-Oxxo_Logo.svg.png" alt="Logo de Oxxo" class="logo">
+            </a>
+            @if (ViewContext.RouteData.Values["page"]?.ToString() == "/Index")
+            {
+                <h3>¡Bienvenido!, Andre Hernandez</h3>
+            }
+            <div class="iconos-derecha">
+                <a href="/Privacy" class="navbar-brand">
+                    <img src="https://cdn.pixabay.com/photo/2021/06/07/13/46/user-6318011_1280.png" alt="Icono de Usuario" class="menu_usuario">
+                </a>
+                <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown">
+                    <img src="/img/Icono_Menu.png" alt="Barras de Navegación" class="menu_usuario">
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="/Index">Index</a></li>
+                    <li><a class="dropdown-item" href="/Privacy">Privacy</a></li>
+                    <li><a class="dropdown-item" href="/Error">Error</a></li>
+                </ul>
             </div>
-        </nav>
+        </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
