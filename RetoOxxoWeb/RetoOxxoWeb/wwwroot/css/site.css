@@ -43,3 +43,42 @@ body {
   height: 150px;
   object-fit: cover;
 }
+
+.card-title
+{
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.ranking-list-index
+{
+  margin-top: 10px;
+}
+
+.ranking-item
+{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.img-rank
+{
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.ranking-username-index
+{
+  font-size: 18px;
+  font-weight: normal;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.tarjetas-botones
+{
+  text-decoration: none;
+}
