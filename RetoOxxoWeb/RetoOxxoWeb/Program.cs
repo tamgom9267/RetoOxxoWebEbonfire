@@ -23,4 +23,9 @@ app.MapStaticAssets();
 app.MapRazorPages()
    .WithStaticAssets();
 
+app.MapGet("/", async context =>
+{
+    context.Response.Redirect("/IniciarSesion");
+});
+
 app.Run();
