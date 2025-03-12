@@ -14,7 +14,10 @@
             <a href="/Index" class="navbar-brand">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Oxxo_Logo.svg/1200px-Oxxo_Logo.svg.png" alt="Logo de Oxxo" class="logo">
             </a>
-            <h3>¡Bienvenido!, Andre Hernandez</h3>
+            @if (ViewContext.RouteData.Values["page"]?.ToString() == "/Index")
+            {
+                <h3>¡Bienvenido!, Andre Hernandez</h3>
+            }
             <div class="iconos-derecha">
                 <a href="/Privacy" class="navbar-brand">
                     <img src="https://cdn.pixabay.com/photo/2021/06/07/13/46/user-6318011_1280.png" alt="Icono de Usuario" class="menu_usuario">
