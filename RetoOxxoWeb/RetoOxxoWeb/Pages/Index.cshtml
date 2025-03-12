@@ -2,7 +2,7 @@
 @model IndexModel
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,19 +39,52 @@
             </div>
             
             <div class="col-md-6">
-                <div class="card custom-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Progreso de Capacitación</h5>
-                        <p class="card-text">Prueba</p>
+                <a href="/Privacy" class="tarjetas-botones">
+                    <div class="card custom-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Progreso de Capacitación</h5>
+                            <div class="progress-list">
+                                <!-- Primera Estadistica-->
+                                <div class="d-flex align-items-center mb-3">
+                                    <p class="mb-0 me-3 progress-text">Manejo de visitas</p>
+                                    <div class="progress w-100">
+                                        <div class="progress-bar progress-bar-index" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                            75%
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Segunda Estadistica-->
+                                <div class="d-flex align-items-center mb-3">
+                                    <p class="mb-0 me-3 progress-text">Manejo de tiempo</p>
+                                    <div class="progress w-100">
+                                        <div class="progress-bar progress-bar-index" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                            75%
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Tercera Estadistica-->
+                                <div class="d-flex align-items-center mb-3">
+                                    <p class="mb-0 me-3 progress-text">Manejo de recursos</p>
+                                    <div class="progress w-100">
+                                        <div class="progress-bar progress-bar-index" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                            75%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <div class="col-md-3">
                 <div class="card custom-card">
                     <div class="card-body">
-                        <h5 class="card-title">Métricas de tiendas</h5>
-                        <p class="card-text">Prueba</p>
+                        <h5 class="card-title text-center">Métricas de tiendas</h5>
+                        <p class="card-text">Numero de tiendas: 25 </p>
+                        <p class="card-text">Profit: 25</p>
+                        <p class="card-text">Empleados: 25</p>
+                        <p class="card-text">Perdidas: 25</p>
                     </div>
                 </div>
             </div>

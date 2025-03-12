@@ -82,3 +82,18 @@ body {
 {
   text-decoration: none;
 }
+
+.progress-bar-index
+{
+  background-color: rgb(199, 66, 93);
+}
+
+.metricas-tienda
+{
+  text-align: right;
+}
+
+.card-text h6
+{
+  text-align: right;
+}
