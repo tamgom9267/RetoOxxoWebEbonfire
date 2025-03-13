@@ -1,0 +1,97 @@
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Fondo claro */
+    color: #333; /* Texto oscuro */
+    margin: 0;
+    padding: 20px;
+}
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: #fff; /* Fondo blanco para la tarjeta */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+h1 {
+    text-align: center;
+    color: #ed5c65;
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+h2 {
+    color: #333;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+.section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.data-label {
+    font-weight: bold;
+    color: #555;
+}
+.data-value {
+    color: #777;
+    text-align: right;
+}
+.profile-photo {
+    display: block;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 20px auto;
+    border: 3px solid #ffda44;
+}
+.button-small {
+    display: block;
+    background-color: #ffdda9; /* Color del botón */
+    color: rgb(0, 0, 0);
+    padding: 7px 12px; /* Tamaño ajustado */
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 8px;
+    margin: 10px auto;
+    width: fit-content;
+    text-decoration: none;
+    border: 2px solid #9b9b9b; /* Marco alrededor del botón */
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.button-small:hover {
+    background-color: #cba976;
+    border-color: #7b7b7b; /* Cambio en el borde al pasar el cursor */
+}
+.button-large {
+    display: block;
+    background-color: #ffdda9; /* Color del botón */
+    color: rgb(0, 0, 0);
+    padding: 10px 20px; /* Tamaño más grande */
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 8px;
+    margin: 10px auto;
+    width: fit-content;
+    text-decoration: none;
+    border: 2px solid #9b9b9b; /* Marco alrededor del botón */
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.button-large:hover {
+    background-color: #cba976;
+    border-color: #7b7b7b; /* Cambio en el borde al pasar el cursor */
+}
+   
