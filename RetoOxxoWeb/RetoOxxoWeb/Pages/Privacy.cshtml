@@ -14,57 +14,132 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            text-align: center;
-            padding: 20px;
+            padding: 0;
+            margin: 0;
         }
-        .perfil-container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .container {
             max-width: 600px;
             margin: auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            overflow: hidden;
         }
         h1, h2 {
             color: #333;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            color: crimson;
+            margin-bottom: 30px;
         }
         .section {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+        }
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #555;
+            text-transform: uppercase;
+        }
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .data-label {
+            font-weight: bold;
+            color: #444;
+        }
+        .data-value {
+            color: #777;
+        }
+        .profile-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 10px auto;
+            display: block;
+        }
+        .edit-button {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: crimson;
+            color: white;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            margin: 10px auto;
+        }
+        .edit-button:hover {
+            background-color: #880505;
         }
     </style>
 </head>
 <body>
-    <div class="perfil-container">
-        <h1>Perfil de Laura</h1>
+    <div class="container">
+        <h1>Editar Perfil</h1>
         
+        <img src="@Model.Laura.fotografia" alt="Foto de Laura" class="profile-photo" />
+        <a href="#" class="edit-button">Cambiar Foto</a>
+
         <div class="section">
-            <h2>Datos Personales</h2>
-            @if (Model.Laura != null)
-            {
-                <p><strong>Nombre:</strong> @Model.Laura.nombre</p>
-                <p><strong>Apellido Paterno:</strong> @Model.Laura.apellidop</p>
-                <p><strong>Apellido Materno:</strong> @Model.Laura.apellidom</p>
-                <img src="@Model.Laura.fotografia" alt="Fotografía de Laura" width="150" />
-            }
+            <h2 class="section-title">Datos Personales</h2>
+            <div class="data-row">
+                <span class="data-label">Nombre completo:</span>
+                <span class="data-value">@Model.Laura.nombre @Model.Laura.apellidop @Model.Laura.apellidom</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">Usuario:</span>
+                <span class="data-value">@Model.Laura.nombre</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">Edad:</span>
+                <span class="data-value">30 años</span> <!-- Valor simulado -->
+            </div>
+            <div class="data-row">
+                <span class="data-label">Fecha de nacimiento:</span>
+                <span class="data-value">12-09-1995</span> <!-- Valor simulado -->
+            </div>
         </div>
 
         <div class="section">
-            <h2>Datos de Contacto</h2>
-            @if (Model.Laura != null)
-            {
-                <p><strong>Teléfono:</strong> @Model.Laura.telefono</p>
-            }
+            <h2 class="section-title">Datos de Contacto</h2>
+            <div class="data-row">
+                <span class="data-label">Teléfono:</span>
+                <span class="data-value">@Model.Laura.telefono</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">Correo:</span>
+                <span class="data-value">enrique_123@outlook.com</span> <!-- Simulado -->
+            </div>
         </div>
 
         <div class="section">
-            <h2>Dirección</h2>
-            @if (Model.Laura != null)
-            {
-                <p><strong>Calle:</strong> @Model.Laura.calle</p>
-                <p><strong>Código Postal:</strong> @Model.Laura.codigo_postal</p>
-                <p><strong>Estado:</strong> @Model.Laura.estado</p>
-                <p><strong>Ciudad:</strong> @Model.Laura.ciudad</p>
-            }
+            <h2 class="section-title">Dirección</h2>
+            <div class="data-row">
+                <span class="data-label">Estado:</span>
+                <span class="data-value">@Model.Laura.estado</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">Calle:</span>
+                <span class="data-value">@Model.Laura.calle</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">Código Postal:</span>
+                <span class="data-value">@Model.Laura.codigo_postal</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">Ciudad:</span>
+                <span class="data-value">@Model.Laura.ciudad</span>
+            </div>
         </div>
     </div>
 </body>
