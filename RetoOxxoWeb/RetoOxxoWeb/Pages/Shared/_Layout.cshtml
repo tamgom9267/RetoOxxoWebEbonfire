@@ -21,7 +21,7 @@
             </a>
             @if (ViewContext.RouteData.Values["page"]?.ToString() == "/Index")
             {
-                <h3>¡Bienvenido/a!, @nombreUsuario</h3>
+                <h3 class="titulo">¡Bienvenido/a!, @nombreUsuario</h3>
             }
             <div class="iconos-derecha">
                 <a href="/Privacy" class="navbar-brand">
@@ -31,9 +31,10 @@
                     <img src="/img/Icono_Menu.png" alt="Barras de Navegación" class="menu_usuario">
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="/Index">Index</a></li>
-                    <li><a class="dropdown-item" href="/Privacy">Privacy</a></li>
-                    <li><a class="dropdown-item" href="/Error">Error</a></li>
+                    <li><a class="dropdown-item" href="/Index">Pagina Principal</a></li>
+                    <li><a class="dropdown-item" href="/Progreso_Capacitacion">Capacitaciones</a></li>
+                    <li><a class="dropdown-item" href="/Leaderboard">Leaderboard</a></li>
+                    <li><a class="dropdown-item" href="/IniciarSesion">Cerrar Sesión</a></li>
                 </ul>
             </div>
         </div>
@@ -43,12 +44,6 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - RetoOxxoWeb - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

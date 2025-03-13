@@ -12,7 +12,7 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-3">
-                <a href="/Privacy" class="tarjetas-botones">
+                <a href="/Leaderboard" class="tarjetas-botones">
                     <div class="card custom-card">
                         <div class="card-body">
                             <h5 class="card-title text-center">Ranking</h5>
@@ -53,7 +53,7 @@
             </div>
             
             <div class="col-md-6">
-                <a href="/Privacy" class="tarjetas-botones">
+                <a href="/Progreso_Capacitacion" class="tarjetas-botones">
                     <div class="card custom-card">
                         <div class="card-body">
                             <h5 class="card-title text-center">Progreso de Capacitación</h5>
@@ -62,8 +62,8 @@
                                 <div class="d-flex align-items-center mb-3">
                                     <p class="mb-0 me-3 progress-text">Manejo de visitas</p>
                                     <div class="progress w-100">
-                                        <div class="progress-bar rogress-bar-index" role="progressbar" style="width: @Model.ProgresoTaberna%;" aria-valuenow="@Model.ProgresoTaberna" aria-valuemin="p0" aria-valuemax="100">
-                                            @Model.ProgresoTaberna%
+                                        <div class="progress-bar progress-bar-index" role="progressbar" style="width: @Model.ProgresoTaberna%;" aria-valuenow="@Model.ProgresoTaberna" aria-valuemin="p0" aria-valuemax="100">
+                                            @Model.ProgresoDecision%
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +81,7 @@
                                     <p class="mb-0 me-3 progress-text">Manejo de recursos</p>
                                     <div class="progress w-100">
                                         <div class="progress-bar progress-bar-index" role="progressbar" style="width: @Model.ProgresoDecision%;" aria-valuenow="@Model.ProgresoDecision%" aria-valuemin="0" aria-valuemax="100">
-                                            @Model.ProgresoDecision%
+                                            @Model.ProgresoTaberna%
                                         </div>
                                     </div>
                                 </div>
@@ -99,27 +99,27 @@
                             <!-- Primera Métrica-->
                             <div class="d-flex justify-content-between mb-3">
                                 <p class="metric-description mb-0">Food Service:</p>
-                                <p class="metric-value mb-0">@Model.FoodService</p>
+                                <p class="metric-value mb-0">@Model.FoodService%</p>
                             </div>
                             <!-- Segunda Métrica-->
                             <div class="d-flex justify-content-between mb-3">
-                                <p class="metric-description mb-0">Ejecución de Promociones:</p>
-                                <p class="metric-value mb-0">@Model.EjecucionPromociones</p>
+                                <p class="metric-description mb-0">Ejecución de Promos:</p>
+                                <p class="metric-value mb-0">@Model.EjecucionPromociones%</p>
                             </div>
                             <!-- Tercera Métrica-->
                             <div class="d-flex justify-content-between mb-3">
                                 <p class="metric-description mb-0">Equipos Completos:</p>
-                                <p class="metric-value mb-0">@Model.EquiposCompletos</p>
+                                <p class="metric-value mb-0">@Model.EquiposCompletos%</p>
                             </div>
                             <!-- Cuarta Métrica-->
                             <div class="d-flex justify-content-between mb-3">
                                 <p class="metric-description mb-0">Rotación:</p>
-                                <p class="metric-value mb-0">@Model.Rotacion</p>
+                                <p class="metric-value mb-0">@Model.Rotacion%</p>
                             </div>
                             <!-- Quinta Métrica-->
                             <div class="d-flex justify-content-between mb-3">
                                 <p class="metric-description mb-0">Faltante de Efectivo:</p>
-                                <p class="metric-value mb-0">@Model.FaltanteEfectivo</p>
+                                <p class="metric-value mb-0">@Model.FaltanteEfectivo$</p>
                             </div>
                         </div>
                     </div>
@@ -128,7 +128,9 @@
         </div>
         <!-- Botón de Jugar-->
         <div class="text-center mt-5">
-            <button type="button" class="btn btn-lg btn-primary btn-custom-large">Jugar!</button>
+            <a href="/Juego">
+                <button type="button" class="btn btn-lg btn-primary btn-custom-large">Jugar!</button>
+            </a>
         </div>
     </div>
 </body>
