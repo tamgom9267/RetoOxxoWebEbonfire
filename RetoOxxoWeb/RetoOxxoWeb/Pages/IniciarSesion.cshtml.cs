@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RetoOxxoWeb.Model;
 using System.Collections.Generic;
-using System.Diagnostics; // Necesario para Debug
+using System.Diagnostics;
 
 namespace RetoOxxoWeb.Pages
 {
@@ -15,37 +15,22 @@ namespace RetoOxxoWeb.Pages
         public string Contraseña { get; set; }
 
         public string Mensaje { get; set; }
-        public List<usuario> Usuarios { get; set; } = new List<usuario>();
-
-        public void OnGet()
-        {
-            DataBaseContext db = new DataBaseContext();
-            Usuarios = db.GetAllUsers(); // Obtiene todos los usuarios de la base de datos
-        }
 
         public IActionResult OnPost()
         {
             DataBaseContext db = new DataBaseContext();
-            Usuarios = db.GetAllUsers(); // Obtener todos los usuarios de la base de datos
-
-            // Mostrar los datos obtenidos en la consola para verificar
-            Debug.WriteLine("Usuarios en la base de datos:");
-            foreach (var u in Usuarios)
-            {
-                Debug.WriteLine($"Usuario: {u.nombre}, Contraseña: {u.contraseña}");
-            }
+            List<usuario> usuarios = db.GetAllUsers(); // Obtener todos los usuarios de la base de datos
 
             Debug.WriteLine($"Usuario ingresado: {Nombre}, Contraseña ingresada: {Contraseña}");
 
             // Verificar si el usuario y la contraseña coinciden
-            var usuarioValido = Usuarios.Find(u => u.nombre.Trim() == Nombre.Trim() && u.contraseña.Trim() == Contraseña.Trim());
+            var usuarioValido = usuarios.Find(u => u.nombre.Trim() == Nombre.Trim() && u.contraseña.Trim() == Contraseña.Trim());
 
             if (usuarioValido != null)
             {
                 Debug.WriteLine("Inicio de sesión exitoso. Redirigiendo...");
                 Response.Redirect("/Index");
                 return Page(); // Asegura que el método no continúe ejecutándose
-
             }
             else
             {

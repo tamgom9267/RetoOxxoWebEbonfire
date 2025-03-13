@@ -1,12 +1,13 @@
 using System;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
+using System.Diagnostics; // Para depuración
 
 namespace RetoOxxoWeb.Model
 {
     public class DataBaseContext
     {
-        public string ConnectionString {get; set;}
+        public string ConnectionString { get; set; }
         
         public DataBaseContext()
         {
@@ -16,37 +17,6 @@ namespace RetoOxxoWeb.Model
         private MySqlConnection GetConnection()
         {
             return new MySqlConnection(ConnectionString);
-        }
-
-        public usuario AuthenticateUser(string nombre, string password)
-        {
-            usuario user = null;
-            
-            using (MySqlConnection conexion = GetConnection())
-            {
-                conexion.Open();
-                string query = "SELECT id_usuario, nombre FROM usuario WHERE nombre = @nombre AND contraseña = @password";
-                
-                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
-                {
-                    cmd.Parameters.AddWithValue("@nombre", nombre);
-                    cmd.Parameters.AddWithValue("@password", password);
-
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            user = new usuario
-                            {
-                                id_usuario = Convert.ToInt32(reader["id_usuario"]),
-                                nombre = reader["nombre"].ToString()
-                            };
-                        }
-                    }
-                }
-            }
-
-            return user;
         }
 
         public usuario GetUsuarioEncima(int idUsuarioActual)
@@ -168,6 +138,7 @@ namespace RetoOxxoWeb.Model
 
             return usuarioDebajo;
         }
+
         public List<usuario> GetAllUsers()
         {
             List<usuario> usuarios = new List<usuario>();
@@ -185,16 +156,21 @@ namespace RetoOxxoWeb.Model
                         {
                             usuarios.Add(new usuario
                             {
-                                nombre = reader["nombre"].ToString(),
-                                contraseña = reader["contraseña"].ToString()
+                                nombre = reader["nombre"].ToString().Trim(),
+                                contraseña = reader["contraseña"].ToString().Trim()
                             });
                         }
                     }
                 }
             }
 
+            Debug.WriteLine("Usuarios obtenidos de la base de datos:");
+            foreach (var u in usuarios)
+            {
+                Debug.WriteLine($"Usuario: {u.nombre}, Contraseña: {u.contraseña}");
+            }
+
             return usuarios;
         }
-
     }
 }
