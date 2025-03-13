@@ -136,7 +136,7 @@ namespace RetoOxxoWeb.Model
 
             return usuarioDebajo;
         }
-
+        // Hola!
         public (int ProgresoTaberna, int ProgresoLaberinto, int ProgresoDecision) GetProgresoUsuario(int idUsuarioActual)
         {
             int progresoTaberna = 0;
