@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="~/RetoOxxoWeb.styles.css" asp-append-version="true" />
 </head>
 <body>
+@inject RetoOxxoWeb.Model.DataBaseContext _context
+
+@{
+    var nombreUsuario = _context.GetNombreUsuario(4);
+}
     <header>
         <div class="header-container">
             <a href="/Index" class="navbar-brand">
@@ -16,7 +21,7 @@
             </a>
             @if (ViewContext.RouteData.Values["page"]?.ToString() == "/Index")
             {
-                <h3>¡Bienvenido!, Andre Hernandez</h3>
+                <h3>¡Bienvenido/a!, @nombreUsuario</h3>
             }
             <div class="iconos-derecha">
                 <a href="/Privacy" class="navbar-brand">
