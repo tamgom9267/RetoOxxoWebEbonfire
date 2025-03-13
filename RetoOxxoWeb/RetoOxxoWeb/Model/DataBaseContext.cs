@@ -1,17 +1,15 @@
 using System;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
-using System.Diagnostics; // Para depuración
 
 namespace RetoOxxoWeb.Model
 {
     public class DataBaseContext
     {
-        public string ConnectionString { get; set; }
-        
+        public string ConnectionString {get; set;}
         public DataBaseContext()
         {
-            ConnectionString = "Server=127.0.0.1;Port=3306;Database=oxxojuego;Uid=root;password=root;";
+            ConnectionString = "Server=127.0.0.1;Port=3306;Database=oxxojuego;Uid=root;password=Andre2005;";
         }
 
         private MySqlConnection GetConnection()
@@ -55,13 +53,13 @@ namespace RetoOxxoWeb.Model
                             laberinto l ON u.id_usuario = l.id_usuario
                         LEFT JOIN 
                             decision d ON u.id_usuario = d.id_usuario
-                        WHERE u.id_usuario = @idUsuarioActual
+                        WHERE u.id_usuario = 4
                     )
                     ORDER BY promedio_puntos DESC
                     LIMIT 1;";
 
                 MySqlCommand cmd = new MySqlCommand(queryArriba, conexion);
-                cmd.Parameters.AddWithValue("@idUsuarioActual", idUsuarioActual);
+                cmd.Parameters.AddWithValue("4", idUsuarioActual);
 
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -115,13 +113,13 @@ namespace RetoOxxoWeb.Model
                             laberinto l ON u.id_usuario = l.id_usuario
                         LEFT JOIN 
                             decision d ON u.id_usuario = d.id_usuario
-                        WHERE u.id_usuario = @idUsuarioActual
+                        WHERE u.id_usuario = 4
                     )
                     ORDER BY promedio_puntos ASC
                     LIMIT 1;";
 
                 MySqlCommand cmd = new MySqlCommand(queryAbajo, conexion);
-                cmd.Parameters.AddWithValue("@idUsuarioActual", idUsuarioActual);
+                cmd.Parameters.AddWithValue("4", idUsuarioActual);
 
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -139,38 +137,120 @@ namespace RetoOxxoWeb.Model
             return usuarioDebajo;
         }
 
-        public List<usuario> GetAllUsers()
+        public (int ProgresoTaberna, int ProgresoLaberinto, int ProgresoDecision) GetProgresoUsuario(int idUsuarioActual)
         {
-            List<usuario> usuarios = new List<usuario>();
+            int progresoTaberna = 0;
+            int progresoLaberinto = 0;
+            int progresoDecision = 0;
 
             using (MySqlConnection conexion = GetConnection())
             {
                 conexion.Open();
-                string query = "SELECT nombre, contraseña FROM usuario";
 
-                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                string queryProgreso = @"
+                    SELECT 
+                        IFNULL(t.puntos, 0) AS progreso_taberna,
+                        IFNULL(l.puntos, 0) AS progreso_laberinto,
+                        IFNULL(d.puntos, 0) AS progreso_decision
+                    FROM 
+                        usuario u
+                    LEFT JOIN 
+                        taberna t ON u.id_usuario = t.id_usuario
+                    LEFT JOIN 
+                        laberinto l ON u.id_usuario = l.id_usuario
+                    LEFT JOIN 
+                        decision d ON u.id_usuario = d.id_usuario
+                    WHERE 
+                        u.id_usuario = 4;";
+
+                MySqlCommand cmd = new MySqlCommand(queryProgreso, conexion);
+                cmd.Parameters.AddWithValue("4", idUsuarioActual);
+
+                using (var reader = cmd.ExecuteReader())
                 {
-                    using (var reader = cmd.ExecuteReader())
+                    if (reader.Read())
                     {
-                        while (reader.Read())
-                        {
-                            usuarios.Add(new usuario
-                            {
-                                nombre = reader["nombre"].ToString().Trim(),
-                                contraseña = reader["contraseña"].ToString().Trim()
-                            });
-                        }
+                        progresoTaberna = Convert.ToInt32(reader["progreso_taberna"]);
+                        progresoLaberinto = Convert.ToInt32(reader["progreso_laberinto"]);
+                        progresoDecision = Convert.ToInt32(reader["progreso_decision"]);
+                    }
+                }
+            }
+            int porcentajeTaberna = (progresoTaberna * 100) / 500;
+            int porcentajeLaberinto = (progresoLaberinto * 100) / 300;
+            int porcentajeDecision = (progresoDecision * 100) / 200;
+
+            return (porcentajeTaberna, porcentajeLaberinto, porcentajeDecision);
+        }
+
+        public (int FoodService, int EjecucionPromociones, int EquiposCompletos, int Rotacion, int FaltanteEfectivo) GetMetricasDeTienda(int idUsuario)
+        {
+            int foodService = 0;
+            int ejecucionPromociones = 0;
+            int equiposCompletos = 0;
+            int rotacion = 0;
+            int faltanteEfectivo = 0;
+
+            using (MySqlConnection conexion = GetConnection())
+            {
+                conexion.Open();
+
+                string queryMetricas = @"
+                    SELECT 
+                        food_service,
+                        ejecucion_promociones,
+                        equipos_completos,
+                        rotacion,
+                        faltante_efectivo
+                    FROM 
+                        metricas_de_tienda
+                    WHERE 
+                        id_usuario = 4;";
+
+                MySqlCommand cmd = new MySqlCommand(queryMetricas, conexion);
+                cmd.Parameters.AddWithValue("4", idUsuario);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        foodService = Convert.ToInt32(reader["food_service"]);
+                        ejecucionPromociones = Convert.ToInt32(reader["ejecucion_promociones"]);
+                        equiposCompletos = Convert.ToInt32(reader["equipos_completos"]);
+                        rotacion = Convert.ToInt32(reader["rotacion"]);
+                        faltanteEfectivo = Convert.ToInt32(reader["faltante_efectivo"]);
                     }
                 }
             }
 
-            Debug.WriteLine("Usuarios obtenidos de la base de datos:");
-            foreach (var u in usuarios)
+            return (foodService, ejecucionPromociones, equiposCompletos, rotacion, faltanteEfectivo);
+        }
+
+        public string GetNombreUsuario(int idUsuario)
+        {
+            string nombreUsuario = string.Empty;
+
+            using (MySqlConnection conexion = GetConnection())
             {
-                Debug.WriteLine($"Usuario: {u.nombre}, Contraseña: {u.contraseña}");
+                conexion.Open();
+
+                string queryNombre = "SELECT nombre FROM usuario WHERE id_usuario = 4;";
+                MySqlCommand cmd = new MySqlCommand(queryNombre, conexion);
+                cmd.Parameters.AddWithValue("4", idUsuario);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        nombreUsuario = reader["nombre"].ToString();
+                    }
+                }
             }
 
-            return usuarios;
+            return nombreUsuario;
         }
+
+
+
     }
 }
