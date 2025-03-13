@@ -1,5 +1,8 @@
 ﻿@page
 @model PrivacyModel
+@{
+    ViewData["Title"] = "Perfil";
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +12,31 @@
     <title>Perfil</title>
 </head>
 <body>
-    <h1>Aqui ira la pagina del perfil</h1>
+    <h1>Perfil del Usuario</h1>
+    <div>
+        <h2>Usuario Encima</h2>
+        @if (Model.UsuarioEncima != null)
+        {
+            <p>Nombre: @Model.UsuarioEncima.nombre</p>
+            <p>ID: @Model.UsuarioEncima.id_usuario</p>
+        }
+        else
+        {
+            <p>No hay usuarios por encima.</p>
+        }
+    </div>
+    <div>
+        <h2>Usuario Debajo</h2>
+        @if (Model.UsuarioDebajo != null)
+        {
+            <p>Nombre: @Model.UsuarioDebajo.nombre</p>
+            <p>ID: @Model.UsuarioDebajo.id_usuario</p>
+        }
+        else
+        {
+            <p>No hay usuarios por debajo.</p>
+        }
+    </div>
 </body>
 </html>
+
