@@ -7,14 +7,46 @@ namespace RetoOxxoWeb.Model
     public class DataBaseContext
     {
         public string ConnectionString {get; set;}
+        
         public DataBaseContext()
         {
-            ConnectionString = "Server=127.0.0.1;Port=3306;Database=oxxojuego;Uid=root;password=Andre2005;";
+            ConnectionString = "Server=127.0.0.1;Port=3306;Database=oxxojuego;Uid=root;password=root;";
         }
 
         private MySqlConnection GetConnection()
         {
             return new MySqlConnection(ConnectionString);
+        }
+
+        public usuario AuthenticateUser(string nombre, string password)
+        {
+            usuario user = null;
+            
+            using (MySqlConnection conexion = GetConnection())
+            {
+                conexion.Open();
+                string query = "SELECT id_usuario, nombre FROM usuario WHERE nombre = @nombre AND contraseña = @password";
+                
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.Parameters.AddWithValue("@password", password);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            user = new usuario
+                            {
+                                id_usuario = Convert.ToInt32(reader["id_usuario"]),
+                                nombre = reader["nombre"].ToString()
+                            };
+                        }
+                    }
+                }
+            }
+
+            return user;
         }
 
         public usuario GetUsuarioEncima(int idUsuarioActual)
@@ -29,7 +61,7 @@ namespace RetoOxxoWeb.Model
                         SELECT 
                             u.id_usuario, 
                             u.nombre, 
-                            AVG(IFNULL(t.puntos_g1,0) + IFNULL(l.puntos_g3,0) + IFNULL(d.puntos_j2,0)) / 3 AS promedio_puntos
+                            AVG(IFNULL(t.puntos,0) + IFNULL(l.puntos,0) + IFNULL(d.puntos,0)) / 3 AS promedio_puntos
                         FROM 
                             usuario u
                         LEFT JOIN 
@@ -44,7 +76,7 @@ namespace RetoOxxoWeb.Model
                             promedio_puntos DESC
                     ) ranking
                     WHERE promedio_puntos < (
-                        SELECT AVG(IFNULL(t.puntos_g1,0) + IFNULL(l.puntos_g3,0) + IFNULL(d.puntos_j2,0)) / 3
+                        SELECT AVG(IFNULL(t.puntos,0) + IFNULL(l.puntos,0) + IFNULL(d.puntos,0)) / 3
                         FROM 
                             usuario u
                         LEFT JOIN 
@@ -53,13 +85,13 @@ namespace RetoOxxoWeb.Model
                             laberinto l ON u.id_usuario = l.id_usuario
                         LEFT JOIN 
                             decision d ON u.id_usuario = d.id_usuario
-                        WHERE u.id_usuario = 4
+                        WHERE u.id_usuario = @idUsuarioActual
                     )
                     ORDER BY promedio_puntos DESC
                     LIMIT 1;";
 
                 MySqlCommand cmd = new MySqlCommand(queryArriba, conexion);
-                cmd.Parameters.AddWithValue("4", idUsuarioActual);
+                cmd.Parameters.AddWithValue("@idUsuarioActual", idUsuarioActual);
 
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -89,7 +121,7 @@ namespace RetoOxxoWeb.Model
                         SELECT 
                             u.id_usuario, 
                             u.nombre, 
-                            AVG(IFNULL(t.puntos_g1,0) + IFNULL(l.puntos_g3,0) + IFNULL(d.puntos_j2,0)) / 3 AS promedio_puntos
+                            AVG(IFNULL(t.puntos,0) + IFNULL(l.puntos,0) + IFNULL(d.puntos,0)) / 3 AS promedio_puntos
                         FROM 
                             usuario u
                         LEFT JOIN 
@@ -104,7 +136,7 @@ namespace RetoOxxoWeb.Model
                             promedio_puntos DESC
                     ) ranking
                     WHERE promedio_puntos > (
-                        SELECT AVG(IFNULL(t.puntos_g1,0) + IFNULL(l.puntos_g3,0) + IFNULL(d.puntos_j2,0)) / 3
+                        SELECT AVG(IFNULL(t.puntos,0) + IFNULL(l.puntos,0) + IFNULL(d.puntos,0)) / 3
                         FROM 
                             usuario u
                         LEFT JOIN 
@@ -113,13 +145,13 @@ namespace RetoOxxoWeb.Model
                             laberinto l ON u.id_usuario = l.id_usuario
                         LEFT JOIN 
                             decision d ON u.id_usuario = d.id_usuario
-                        WHERE u.id_usuario = 4
+                        WHERE u.id_usuario = @idUsuarioActual
                     )
                     ORDER BY promedio_puntos ASC
                     LIMIT 1;";
 
                 MySqlCommand cmd = new MySqlCommand(queryAbajo, conexion);
-                cmd.Parameters.AddWithValue("4", idUsuarioActual);
+                cmd.Parameters.AddWithValue("@idUsuarioActual", idUsuarioActual);
 
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -136,12 +168,33 @@ namespace RetoOxxoWeb.Model
 
             return usuarioDebajo;
         }
+        public List<usuario> GetAllUsers()
+        {
+            List<usuario> usuarios = new List<usuario>();
 
+            using (MySqlConnection conexion = GetConnection())
+            {
+                conexion.Open();
+                string query = "SELECT nombre, contraseña FROM usuario";
 
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            usuarios.Add(new usuario
+                            {
+                                nombre = reader["nombre"].ToString(),
+                                contraseña = reader["contraseña"].ToString()
+                            });
+                        }
+                    }
+                }
+            }
 
-
-        
-
+            return usuarios;
+        }
 
     }
 }
