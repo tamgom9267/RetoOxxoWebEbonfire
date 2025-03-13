@@ -16,7 +16,7 @@ namespace RetoOxxoWeb.Pages
 
         public string Mensaje { get; set; }
 
-        public IActionResult OnPost()
+        public void OnPost()
         {
             DataBaseContext db = new DataBaseContext();
             List<usuario> usuarios = db.GetAllUsers(); // Obtener todos los usuarios de la base de datos
@@ -24,19 +24,17 @@ namespace RetoOxxoWeb.Pages
             Debug.WriteLine($"Usuario ingresado: {Nombre}, Contraseña ingresada: {Contraseña}");
 
             // Verificar si el usuario y la contraseña coinciden
-            var usuarioValido = usuarios.Find(u => u.nombre.Trim() == Nombre.Trim() && u.contraseña.Trim() == Contraseña.Trim());
-
+            var usuarioValido = usuarios.Find(u => u.nombre == Nombre && u.contraseña == Contraseña);
+            
             if (usuarioValido != null)
             {
                 Debug.WriteLine("Inicio de sesión exitoso. Redirigiendo...");
                 Response.Redirect("/Index");
-                return Page(); // Asegura que el método no continúe ejecutándose
             }
             else
             {
                 Debug.WriteLine("Credenciales incorrectas.");
                 Mensaje = "Credenciales incorrectas. Inténtalo de nuevo.";
-                return Page();
             }
         }
     }
