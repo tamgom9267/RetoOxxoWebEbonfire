@@ -77,11 +77,11 @@ namespace RetoOxxoWeb.Model
             return usuarioEncima;
         }
 
-        public usuario GetUsuarioPorId(int idUsuario)
-{
-    usuario usuario = null;
+    public usuario GetUsuarioPorId(int idUsuario)
+    {
+        usuario usuario = null;
 
-    using (MySqlConnection conexion = GetConnection())
+        using (MySqlConnection conexion = GetConnection())
         {
             conexion.Open();
             string query = "SELECT id_usuario, nombre FROM usuario WHERE id_usuario = @id";
