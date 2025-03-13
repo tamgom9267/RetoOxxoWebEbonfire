@@ -38,6 +38,5 @@ public class IndexModel : PageModel
         EquiposCompletos = metricas.EquiposCompletos;
         Rotacion = metricas.Rotacion;
         FaltanteEfectivo = metricas.FaltanteEfectivo;
-
     }
 }

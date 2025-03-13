@@ -1,14 +1,75 @@
 ﻿@page
 @model PrivacyModel
+@{
+    ViewData["Title"] = "Perfil de Laura";
+}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil</title>
+    <title>Perfil de Laura</title>
+    <link rel="stylesheet" href="~/css/privacy.css" asp-append-version="true">
 </head>
 <body>
-    <h1>Aqui ira la pagina del perfil</h1>
+    <div class="container">
+        <h1>Perfil de Laura</h1>
+        <img src="https://cdn.pixabay.com/photo/2021/06/07/13/46/user-6318011_1280.png" alt="Foto de Laura" class="profile-photo" />
+        <a href="#" class="button-small">Cambiar Foto</a>
+        <a href="#" class="button-large">Editar Perfil</a>
+
+        <div class="section">
+            <h2>Datos Personales</h2>
+            <div class="data-row">
+                <span class="data-label">Nombre Completo:</span>
+                <span class="data-value">@Model.Laura.nombre @Model.Laura.apellidop @Model.Laura.apellidom</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">Usuario:</span>
+                <span class="data-value">@Model.Laura.nombre</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">Edad:</span>
+                <span class="data-value">30 años</span> <!-- Ejemplo -->
+            </div>
+            <div class="data-row">
+                <span class="data-label">Fecha de Nacimiento:</span>
+                <span class="data-value">12-09-1995</span> <!-- Ejemplo -->
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Datos de Contacto</h2>
+            <div class="data-row">
+                <span class="data-label">Teléfono:</span>
+                <span class="data-value">@Model.Laura.telefono</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">Correo Electrónico:</span>
+                <span class="data-value">enrique_123@outlook.com</span> <!-- Ejemplo -->
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Dirección</h2>
+            <div class="data-row">
+                <span class="data-label">Estado:</span>
+                <span class="data-value">@Model.Laura.estado</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">Calle:</span>
+                <span class="data-value">@Model.Laura.calle</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">Código Postal:</span>
+                <span class="data-value">@Model.Laura.codigo_postal</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">Ciudad:</span>
+                <span class="data-value">@Model.Laura.ciudad</span>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
