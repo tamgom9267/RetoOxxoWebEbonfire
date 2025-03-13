@@ -82,3 +82,40 @@ body {
 {
   text-decoration: none;
 }
+
+.progress-bar-index
+{
+  background-color: rgb(199, 66, 93);
+}
+
+.metric-list
+{
+  margin-top: 10px;
+}
+
+.metric-description
+{
+  font-size: 16px;
+}
+
+.metric-value
+{
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.btn-primary
+{
+  background-color: crimson;
+  color: white;
+  border-radius: 8px;
+  padding: 20px 60px;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover
+{
+  background-color: #880505;
+}

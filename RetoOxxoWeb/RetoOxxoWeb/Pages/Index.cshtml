@@ -2,7 +2,7 @@
 @model IndexModel
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,14 @@
                                 <!--Usuario 1 -->
                                 <div class="ranking-item d-flex align-items-center mb-3">
                                     <img src="https://cdn.pixabay.com/photo/2021/06/07/13/46/user-6318011_1280.png" alt="Imagen de usuario" class="img-rank">
-                                    <p class="ranking-username-index mb-0 ms-4">Heriberto Saenz</p>
+                                    @if (Model.UsuarioEncima != null)
+                                    {
+                                        <span class="ranking-username-index mb-0 ms-4">@Model.UsuarioEncima.nombre</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="ranking-username-index mb-0 ms-4">Sin usuario encima</span>
+                                    }
                                 </div>
                                 <!--Usuario 2 -->
                                 <div class="ranking-item d-flex align-items-center mb-3">
@@ -30,7 +37,14 @@
                                 <!--Usuario 3 -->
                                 <div class="ranking-item d-flex align-items-center mb-3">
                                     <img src="https://cdn.pixabay.com/photo/2021/06/07/13/46/user-6318011_1280.png" alt="Imagen de usuario" class="img-rank">
-                                    <p class="ranking-username-index mb-0 ms-4">Miranda Lopez</p>
+                                    @if (Model.UsuarioDebajo != null)
+                                    {
+                                        <span class="ranking-username-index mb-0 ms-4">@Model.UsuarioDebajo.nombre</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="ranking-username-index mb-0 ms-4">Sin usuario debajo</span>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -39,22 +53,82 @@
             </div>
             
             <div class="col-md-6">
-                <div class="card custom-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Progreso de Capacitación</h5>
-                        <p class="card-text">Prueba</p>
+                <a href="/Privacy" class="tarjetas-botones">
+                    <div class="card custom-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Progreso de Capacitación</h5>
+                            <div class="progress-list">
+                                <!-- Primera Estadistica-->
+                                <div class="d-flex align-items-center mb-3">
+                                    <p class="mb-0 me-3 progress-text">Manejo de visitas</p>
+                                    <div class="progress w-100">
+                                        <div class="progress-bar rogress-bar-index" role="progressbar" style="width: @Model.ProgresoTaberna%;" aria-valuenow="@Model.ProgresoTaberna" aria-valuemin="p0" aria-valuemax="100">
+                                            @Model.ProgresoTaberna%
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Segunda Estadistica-->
+                                <div class="d-flex align-items-center mb-3">
+                                    <p class="mb-0 me-3 progress-text">Manejo de tiempo</p>
+                                    <div class="progress w-100">
+                                        <div class="progress-bar progress-bar-index" role="progressbar" style="width: @Model.ProgresoLaberinto%;" aria-valuenow="@Model.ProgresoLaberinto%" aria-valuemin="0" aria-valuemax="100">
+                                            @Model.ProgresoLaberinto%
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Tercera Estadistica-->
+                                <div class="d-flex align-items-center mb-3">
+                                    <p class="mb-0 me-3 progress-text">Manejo de recursos</p>
+                                    <div class="progress w-100">
+                                        <div class="progress-bar progress-bar-index" role="progressbar" style="width: @Model.ProgresoDecision%;" aria-valuenow="@Model.ProgresoDecision%" aria-valuemin="0" aria-valuemax="100">
+                                            @Model.ProgresoDecision%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <div class="col-md-3">
                 <div class="card custom-card">
                     <div class="card-body">
-                        <h5 class="card-title">Métricas de tiendas</h5>
-                        <p class="card-text">Prueba</p>
+                        <h5 class="card-title text-center">Métricas de tiendas</h5>
+                        <div class="metric-list">
+                            <!-- Primera Métrica-->
+                            <div class="d-flex justify-content-between mb-3">
+                                <p class="metric-description mb-0">Ventas Diarias</p>
+                                <p class="metric-value mb-0">1000</p>
+                            </div>
+                            <!-- Segunda Métrica-->
+                            <div class="d-flex justify-content-between mb-3">
+                                <p class="metric-description mb-0">Ventas Diarias</p>
+                                <p class="metric-value mb-0">1000</p>
+                            </div>
+                            <!-- Tercera Métrica-->
+                            <div class="d-flex justify-content-between mb-3">
+                                <p class="metric-description mb-0">Ventas Diarias</p>
+                                <p class="metric-value mb-0">1000</p>
+                            </div>
+                            <!-- Cuarta Métrica-->
+                            <div class="d-flex justify-content-between mb-3">
+                                <p class="metric-description mb-0">Ventas Diarias</p>
+                                <p class="metric-value mb-0">1000</p>
+                            </div>
+                            <!-- Quinta Métrica-->
+                            <div class="d-flex justify-content-between mb-3">
+                                <p class="metric-description mb-0">Ventas Diarias</p>
+                                <p class="metric-value mb-0">1000</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <!-- Botón de Jugar-->
+        <div class="text-center mt-5">
+            <button type="button" class="btn btn-lg btn-primary btn-custom-large">Jugar!</button>
         </div>
     </div>
 </body>
