@@ -312,7 +312,7 @@ namespace RetoOxxoWeb.Model
                         apellidom = reader["apellidom"].ToString(),
                         telefono = reader["telefono"].ToString(),
                         fotografia = reader["fotografia"].ToString(),
-                        codigo_postal = Convert.ToInt32(reader["codigo_postal"]),
+                        codigo_postal = reader["codigo_postal"].ToString(),
                         calle = reader["calle"].ToString(),
                         estado = reader["estado"].ToString(),
                         ciudad = reader["ciudad"].ToString(),
