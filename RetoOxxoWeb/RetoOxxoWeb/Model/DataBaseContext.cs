@@ -77,65 +77,33 @@ namespace RetoOxxoWeb.Model
             return usuarioEncima;
         }
 
-        public usuario GetUsuarioDebajo(int idUsuarioActual)
+        public usuario GetUsuarioPorId(int idUsuario)
+{
+    usuario usuario = null;
+
+    using (MySqlConnection conexion = GetConnection())
         {
-            usuario usuarioDebajo = null;
+            conexion.Open();
+            string query = "SELECT id_usuario, nombre FROM usuario WHERE id_usuario = @id";
+            MySqlCommand cmd = new MySqlCommand(query, conexion);
+            cmd.Parameters.AddWithValue("@id", idUsuario);
 
-            using (MySqlConnection conexion = GetConnection())
+            using (var reader = cmd.ExecuteReader())
             {
-                conexion.Open();
-                string queryAbajo = @"
-                    SELECT * FROM (
-                        SELECT 
-                            u.id_usuario, 
-                            u.nombre, 
-                            AVG(IFNULL(t.puntos,0) + IFNULL(l.puntos,0) + IFNULL(d.puntos,0)) / 3 AS promedio_puntos
-                        FROM 
-                            usuario u
-                        LEFT JOIN 
-                            taberna t ON u.id_usuario = t.id_usuario
-                        LEFT JOIN 
-                            laberinto l ON u.id_usuario = l.id_usuario
-                        LEFT JOIN 
-                            decision d ON u.id_usuario = d.id_usuario
-                        GROUP BY 
-                            u.id_usuario
-                        ORDER BY 
-                            promedio_puntos DESC
-                    ) ranking
-                    WHERE promedio_puntos > (
-                        SELECT AVG(IFNULL(t.puntos,0) + IFNULL(l.puntos,0) + IFNULL(d.puntos,0)) / 3
-                        FROM 
-                            usuario u
-                        LEFT JOIN 
-                            taberna t ON u.id_usuario = t.id_usuario
-                        LEFT JOIN 
-                            laberinto l ON u.id_usuario = l.id_usuario
-                        LEFT JOIN 
-                            decision d ON u.id_usuario = d.id_usuario
-                        WHERE u.id_usuario = 4
-                    )
-                    ORDER BY promedio_puntos ASC
-                    LIMIT 1;";
-
-                MySqlCommand cmd = new MySqlCommand(queryAbajo, conexion);
-                cmd.Parameters.AddWithValue("4", idUsuarioActual);
-
-                using (var reader = cmd.ExecuteReader())
+                if (reader.Read())
                 {
-                    if (reader.Read())
+                    usuario = new usuario
                     {
-                        usuarioDebajo = new usuario
-                        {
-                            id_usuario = Convert.ToInt32(reader["id_usuario"]),
-                            nombre = reader["nombre"].ToString()
-                        };
-                    }
+                        id_usuario = Convert.ToInt32(reader["id_usuario"]),
+                        nombre = reader["nombre"].ToString()
+                    };
                 }
             }
-
-            return usuarioDebajo;
         }
+
+        return usuario;
+    }
+
 
 
 

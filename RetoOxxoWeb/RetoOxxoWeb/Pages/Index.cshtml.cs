@@ -22,7 +22,7 @@ public class IndexModel : PageModel
     public void OnGet()
     {
         UsuarioEncima = _context.GetUsuarioEncima(4);
-        UsuarioDebajo = _context.GetUsuarioDebajo(4);
+        
 
     }
 }
