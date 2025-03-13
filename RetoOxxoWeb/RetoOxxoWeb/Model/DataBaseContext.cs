@@ -78,31 +78,45 @@ namespace RetoOxxoWeb.Model
         }
 
     public usuario GetUsuarioPorId(int idUsuario)
+{
+    usuario usuario = null;
+
+    using (MySqlConnection conexion = GetConnection())
     {
-        usuario usuario = null;
+        conexion.Open();
+        string query = @"
+            SELECT 
+                id_usuario, nombre, apellidop, apellidom, telefono, fotografia, 
+                codigo_postal, calle, estado, ciudad, tipoempleado
+            FROM usuario 
+            WHERE id_usuario = @id";
+        MySqlCommand cmd = new MySqlCommand(query, conexion);
+        cmd.Parameters.AddWithValue("@id", idUsuario);
 
-        using (MySqlConnection conexion = GetConnection())
+        using (var reader = cmd.ExecuteReader())
         {
-            conexion.Open();
-            string query = "SELECT id_usuario, nombre FROM usuario WHERE id_usuario = @id";
-            MySqlCommand cmd = new MySqlCommand(query, conexion);
-            cmd.Parameters.AddWithValue("@id", idUsuario);
-
-            using (var reader = cmd.ExecuteReader())
+            if (reader.Read())
             {
-                if (reader.Read())
+                usuario = new usuario
                 {
-                    usuario = new usuario
-                    {
-                        id_usuario = Convert.ToInt32(reader["id_usuario"]),
-                        nombre = reader["nombre"].ToString()
-                    };
-                }
+                    id_usuario = Convert.ToInt32(reader["id_usuario"]),
+                    nombre = reader["nombre"].ToString(),
+                    apellidop = reader["apellidop"].ToString(),
+                    apellidom = reader["apellidom"].ToString(),
+                    telefono = reader["telefono"].ToString(),
+                    fotografia = reader["fotografia"].ToString(),
+                    codigo_postal = Convert.ToInt32(reader["codigo_postal"]),
+                    calle = reader["calle"].ToString(),
+                    estado = reader["estado"].ToString(),
+                    ciudad = reader["ciudad"].ToString(),
+                    tipoempleado = Convert.ToByte(reader["tipoempleado"])
+                };
             }
         }
-
-        return usuario;
     }
+
+    return usuario;
+}
 
 
 

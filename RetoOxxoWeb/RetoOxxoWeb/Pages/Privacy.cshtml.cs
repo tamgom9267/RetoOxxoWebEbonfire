@@ -19,7 +19,7 @@ public class PrivacyModel : PageModel
 
     public void OnGet()
     {
-        int idLaura = 4; // Vamos a usar a Laura
+        int idLaura = 4; // ID de Laura
         Laura = _dbContext.GetUsuarioPorId(idLaura);
     }
 }
