@@ -9,7 +9,7 @@ namespace RetoOxxoWeb.Model
         public string ConnectionString {get; set;}
         public DataBaseContext()
         {
-            ConnectionString = "Server=127.0.0.1;Port=3306;Database=oxxojuego;Uid=root;password=Andre2005;";
+            ConnectionString = "Server=127.0.0.1;Port=3306;Database=oxxojuego;Uid=root;password=3314;";
         }
 
         private MySqlConnection GetConnection()
@@ -29,7 +29,7 @@ namespace RetoOxxoWeb.Model
                         SELECT 
                             u.id_usuario, 
                             u.nombre, 
-                            AVG(IFNULL(t.puntos_g1,0) + IFNULL(l.puntos_g3,0) + IFNULL(d.puntos_j2,0)) / 3 AS promedio_puntos
+                            AVG(IFNULL(t.puntos,0) + IFNULL(l.puntos,0) + IFNULL(d.puntos,0)) / 3 AS promedio_puntos
                         FROM 
                             usuario u
                         LEFT JOIN 
@@ -44,7 +44,7 @@ namespace RetoOxxoWeb.Model
                             promedio_puntos DESC
                     ) ranking
                     WHERE promedio_puntos < (
-                        SELECT AVG(IFNULL(t.puntos_g1,0) + IFNULL(l.puntos_g3,0) + IFNULL(d.puntos_j2,0)) / 3
+                        SELECT AVG(IFNULL(t.puntos,0) + IFNULL(l.puntos,0) + IFNULL(d.puntos,0)) / 3
                         FROM 
                             usuario u
                         LEFT JOIN 
@@ -89,7 +89,7 @@ namespace RetoOxxoWeb.Model
                         SELECT 
                             u.id_usuario, 
                             u.nombre, 
-                            AVG(IFNULL(t.puntos_g1,0) + IFNULL(l.puntos_g3,0) + IFNULL(d.puntos_j2,0)) / 3 AS promedio_puntos
+                            AVG(IFNULL(t.puntos,0) + IFNULL(l.puntos,0) + IFNULL(d.puntos,0)) / 3 AS promedio_puntos
                         FROM 
                             usuario u
                         LEFT JOIN 
@@ -104,7 +104,7 @@ namespace RetoOxxoWeb.Model
                             promedio_puntos DESC
                     ) ranking
                     WHERE promedio_puntos > (
-                        SELECT AVG(IFNULL(t.puntos_g1,0) + IFNULL(l.puntos_g3,0) + IFNULL(d.puntos_j2,0)) / 3
+                        SELECT AVG(IFNULL(t.puntos,0) + IFNULL(l.puntos,0) + IFNULL(d.puntos,0)) / 3
                         FROM 
                             usuario u
                         LEFT JOIN 
