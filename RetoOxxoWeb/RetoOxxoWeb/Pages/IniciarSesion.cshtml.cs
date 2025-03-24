@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RetoOxxoWeb.Model;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace RetoOxxoWeb.Pages
@@ -25,7 +24,7 @@ namespace RetoOxxoWeb.Pages
 
             // Verificar si el usuario y la contraseña coinciden
             var usuarioValido = usuarios.Find(u => u.nombre == Nombre && u.contraseña == Contraseña);
-            
+
             if (usuarioValido != null)
             {
                 Debug.WriteLine("Inicio de sesión exitoso. Redirigiendo...");
