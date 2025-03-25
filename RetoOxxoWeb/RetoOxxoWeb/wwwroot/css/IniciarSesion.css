@@ -32,6 +32,10 @@ body {
     margin-top: 50px;
 }
 
+.mensaje-error{
+
+}
+
 .input-group {
     width: 100%;
     display: flex;
@@ -87,4 +91,8 @@ input::placeholder {
     display: flex;
     justify-content: center;
     gap: 10px; /* Ajustamos el espacio entre botones */
+}
+
+h4{
+    color: #c00;
 }

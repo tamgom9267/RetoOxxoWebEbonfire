@@ -15,6 +15,11 @@ namespace RetoOxxoWeb.Pages
 
         public string Mensaje { get; set; }
 
+        public void OnGet()
+        {
+            ViewData["Mensaje"] = "";
+        }
+
         public void OnPost()
         {
             DataBaseContext db = new DataBaseContext();
@@ -33,7 +38,7 @@ namespace RetoOxxoWeb.Pages
             else
             {
                 Debug.WriteLine("Credenciales incorrectas.");
-                Mensaje = "Credenciales incorrectas. Inténtalo de nuevo.";
+                ViewData["Mensaje"] = "Credenciales incorrectas. Inténtalo de nuevo.";
             }
         }
     }
