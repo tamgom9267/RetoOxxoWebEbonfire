@@ -28,7 +28,7 @@ namespace RetoOxxoWeb.Pages
             if (usuarioValido != null)
             {
                 Debug.WriteLine("Inicio de sesión exitoso. Redirigiendo...");
-                Response.Redirect("/Index");
+                Response.Redirect("Index?ID= "+ usuarioValido.id_usuario);
             }
             else
             {

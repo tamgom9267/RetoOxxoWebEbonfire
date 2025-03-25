@@ -1,7 +1,7 @@
 using System;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
-using System.Diagnostics; // Para depuración
+using Org.BouncyCastle.Tls;
 
 namespace RetoOxxoWeb.Model
 {
@@ -252,36 +252,27 @@ namespace RetoOxxoWeb.Model
         }
         public List<usuario> GetAllUsers()
         {
-            List<usuario> usuarios = new List<usuario>();
+            List<usuario> ListaUsuarios = new List<usuario>();
+            MySqlConnection conexion = GetConnection();
+            conexion.Open();
 
-            using (MySqlConnection conexion = GetConnection())
+            MySqlCommand cmd = new MySqlCommand("SELECT id_usuario, nombre, contraseña FROM usuario", conexion);
+            
+            usuario usr1 = new usuario();
+
+            using (var reader = cmd.ExecuteReader())
             {
-                conexion.Open();
-                string query = "SELECT nombre, contraseña FROM usuario";
-
-                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                while (reader.Read())
                 {
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            usuarios.Add(new usuario
-                            {
-                                nombre = reader["nombre"].ToString().Trim(),
-                                contraseña = reader["contraseña"].ToString().Trim()
-                            });
-                        }
-                    }
+                    usr1 = new usuario();
+                    usr1.id_usuario = Convert.ToInt32(reader["id_usuario"]);
+                    usr1.nombre = reader["nombre"].ToString();
+                    usr1.contraseña = reader["contraseña"].ToString();
+                    ListaUsuarios.Add(usr1);
                 }
             }
-
-            Debug.WriteLine("Usuarios obtenidos de la base de datos:");
-            foreach (var u in usuarios)
-            {
-                Debug.WriteLine($"Usuario: {u.nombre}, Contraseña: {u.contraseña}");
-            }
-
-            return usuarios;
+    
+            return ListaUsuarios;
         }
 
         public usuario GetUsuarioPorId(int idUsuario)

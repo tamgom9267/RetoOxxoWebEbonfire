@@ -15,6 +15,21 @@ namespace RetoOxxoWeb.Model
         public string estado { get; set; }
         public string ciudad { get; set; }
         public byte tipoempleado { get; set; }
-        public string contraseña { get; set; } // Agregamos el campo de contraseña
+        public string contraseña { get; set; }
+    
+        public usuario()
+        {
+            
+        }
+        public usuario(int id_usuario_, string nombre_, string contraseña_)
+        {
+            this.id_usuario = id_usuario_;
+            this.nombre = nombre_;
+            this.contraseña = contraseña_;
+            
+        }
+
     }
+
+    
 }
