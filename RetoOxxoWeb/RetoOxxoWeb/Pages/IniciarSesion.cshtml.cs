@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RetoOxxoWeb.Model;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
 
 namespace RetoOxxoWeb.Pages
 {
@@ -32,8 +33,11 @@ namespace RetoOxxoWeb.Pages
 
             if (usuarioValido != null)
             {
+                // Guardar en sesión los datos del usuario
+                HttpContext.Session.SetInt32("usuarioID", usuarioValido.id_usuario);
+
                 Debug.WriteLine("Inicio de sesión exitoso. Redirigiendo...");
-                Response.Redirect("Index?ID= "+ usuarioValido.id_usuario);
+                Response.Redirect("Index");
             }
             else
             {

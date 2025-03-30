@@ -5,9 +5,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Agregar servicios a la aplicación
 builder.Services.AddRazorPages();
+builder.Services.AddDistributedMemoryCache();
+
 
 // Habilitar sesiones
-builder.Services.AddSession();
+builder.Services.AddSession(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.Add(new ServiceDescriptor(typeof(DataBaseContext), new DataBaseContext()));
