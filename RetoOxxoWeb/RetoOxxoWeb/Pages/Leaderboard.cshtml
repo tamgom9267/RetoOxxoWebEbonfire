@@ -1,8 +1,5 @@
 ﻿@page
 @model LeaderboardModel
-@{
-    ViewData["Title"] = "Perfil de Laura";
-}
 
 <!DOCTYPE html>
 <html lang="es">
@@ -10,80 +7,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
+    <link rel="stylesheet" href="~/css/Leaderboard.css" asp-append-version="true">
 </head>
 <body>
-    <div class="text-center"></div>
-        <h1>Aquí estará el leaderboard</h1>
+    <br></br>
+    <div class="text-center">
+        <h1 class="p-4 text-center rounded" style="background-color: #ffdead; display: inline-block; font-size: 50px;">
+            Leaderboards
+        </h1>
     </div>
+    <br></br>
     <div class="row align-items-center">
-        <div class="col">
+        <div class="col-5">
             <div class="container">
+                <h2>Clasificación General (Semanal)</h2>
                 <div class="table-responsive" style="height: 200px; overflow-y: auto;">
-                    <table class="table">
-                        <caption>List of users</caption>
+                    <table class="table table-bordered">
                     <thead>
                         <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Posición</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Puntaje</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                         <th scope="row">1</th>
                         <td>Mark</td>
-                        <td>Otto</td>
-                        <td>mdo</td>
+                        <td>1000</td>
                         </tr>
                         <tr>
                         <th scope="row">2</th>
                         <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>fat</td>
+                        <td>900</td>
                         </tr>
                         <tr>
                         <th scope="row">3</th>
                         <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>twitter</td>
+                        <td>800</td>
                         </tr>
                     </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="col">
+        <div class="col-2"></div>
+        <div class="col-5">
             <div class="container">
+                <h2>Clasificación por videojuego</h2>
                 <div class="table-responsive" style="height: 200px; overflow-y: auto;">
-                    <table class="table">
-                        <caption>List of users</caption>
+                    <table class="table table-bordered">
                     <thead>
                         <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Posición</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Puntaje</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                         <th scope="row">1</th>
                         <td>Mark</td>
-                        <td>Otto</td>
-                        <td>mdo</td>
+                        <td>1000</td>
                         </tr>
                         <tr>
                         <th scope="row">2</th>
                         <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>fat</td>
+                        <td>900</td>
                         </tr>
                         <tr>
                         <th scope="row">3</th>
                         <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>twitter</td>
+                        <td>800</td>
                         </tr>
                     </tbody>
                     </table>
