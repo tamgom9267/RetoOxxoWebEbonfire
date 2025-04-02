@@ -1,4 +1,22 @@
 
-.custom-thead {
-    background-color: #f5d240 !important;
-  }
+.customthead {
+  background-color: #f5d240 !important;
+}
+
+.gold { 
+  background-color: #FFD700 !important;
+  color: black !important; 
+  font-weight: bold !important;
+}
+        
+.silver { 
+  background-color: #C0C0C0 !important; 
+  color: black !important; 
+  font-weight: bold !important;
+} 
+        
+.bronze { 
+  background-color: #CD7F32 !important; 
+  color: black !important; 
+  font-weight: bold !important;
+} 

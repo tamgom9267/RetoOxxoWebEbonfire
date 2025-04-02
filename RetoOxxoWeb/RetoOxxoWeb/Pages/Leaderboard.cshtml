@@ -14,8 +14,6 @@
     <div class="text-center">
         <h1 class="p-4 text-center rounded" style="background-color: #ffdead; display: inline-block; font-size: 50px;">
             Leaderboards
-    using Microsoft.VisualBasic;
-    using RetoOxxoWeb.Model;
         </h1>
     </div>
     <br></br>
@@ -25,7 +23,7 @@
                 <h2>Clasificación General (Semanal)</h2>
                 <div class="table-responsive" style="height: 200px; overflow-y: auto;">
                     <table class="table table-bordered">
-                    <thead>
+                    <thead class="table-dark">
                         <tr>
                         <th scope="col">Posición</th>
                         <th scope="col">Usuario</th>
@@ -35,22 +33,17 @@
                     <tbody>
                         @{var count = 1;}
                         @foreach (var usuario in Model.Puntajes){
-                            <tr>
-                            <th scope="row">@count</th>
-                            <td>@usuario.nombre</td>
-                            <td>@usuario.puntos_totales</td>
+                            string rowClass = "";
+
+                            if (count == 1) { rowClass = "gold fw-bold"; }   
+                            else if (count == 2) { rowClass = "silver fw-bold"; } 
+                            else if (count == 3) { rowClass = "bronze fw-bold"; } 
+                            <tr class="rowClass">
+                                <th scope="row">@count</th>
+                                <td>@usuario.nombre</td>
+                                <td>@usuario.puntos_totales</td>
                             </tr>
                             count++;
-                            /*<tr>
-                            <th scope="row">2</th>
-                            <td>@usuario.id_usuario</td>
-                            <td>@usuario.puntos_totales</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">3</th>
-                            <td>@usuario.id_usuario</td>
-                            <td>@usuario.puntos_totales</td>
-                            </tr> */
                         }
                     </tbody>
                     </table>
@@ -63,7 +56,7 @@
                 <h2>Clasificación por logros</h2>
                 <div class="table-responsive" style="height: 200px; overflow-y: auto;">
                     <table class="table table-bordered">
-                    <thead>
+                    <thead class="table-dark">
                         <tr>
                         <th scope="col">Posición</th>
                         <th scope="col">Usuario</th>
