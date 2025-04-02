@@ -14,6 +14,8 @@
     <div class="text-center">
         <h1 class="p-4 text-center rounded" style="background-color: #ffdead; display: inline-block; font-size: 50px;">
             Leaderboards
+    using Microsoft.VisualBasic;
+    using RetoOxxoWeb.Model;
         </h1>
     </div>
     <br></br>
@@ -31,21 +33,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>1000</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>900</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>800</td>
-                        </tr>
+                        @{var count = 1;}
+                        @foreach (var usuario in Model.Puntajes){
+                            <tr>
+                            <th scope="row">@count</th>
+                            <td>@usuario.nombre</td>
+                            <td>@usuario.puntos_totales</td>
+                            </tr>
+                            count++;
+                            /*<tr>
+                            <th scope="row">2</th>
+                            <td>@usuario.id_usuario</td>
+                            <td>@usuario.puntos_totales</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">3</th>
+                            <td>@usuario.id_usuario</td>
+                            <td>@usuario.puntos_totales</td>
+                            </tr> */
+                        }
                     </tbody>
                     </table>
                 </div>
