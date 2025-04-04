@@ -26,17 +26,17 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
-        var metricas = _context.GetMetricasDeTienda(4);
+        //var metricas = _context.GetMetricasDeTienda(4);
         var (taberna, laberinto, decision) = _context.GetProgresoUsuario(4);
         UsuarioEncima = _context.GetUsuarioEncima(4);
         UsuarioDebajo = _context.GetUsuarioDebajo(4);
         ProgresoTaberna = taberna;
         ProgresoLaberinto = laberinto;
         ProgresoDecision = decision;
-        FoodService = metricas.FoodService;
-        EjecucionPromociones = metricas.EjecucionPromociones;
-        EquiposCompletos = metricas.EquiposCompletos;
-        Rotacion = metricas.Rotacion;
-        FaltanteEfectivo = metricas.FaltanteEfectivo;
+        //FoodService = metricas.FoodService;
+        //EjecucionPromociones = metricas.EjecucionPromociones;
+        //EquiposCompletos = metricas.EquiposCompletos;
+        //Rotacion = metricas.Rotacion;
+        //FaltanteEfectivo = metricas.FaltanteEfectivo;
     }
 }
