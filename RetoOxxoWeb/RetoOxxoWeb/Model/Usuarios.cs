@@ -10,11 +10,11 @@ namespace RetoOxxoWeb.Model
         public string apellidom { get; set; }
         public string telefono { get; set; }
         public string fotografia { get; set; }
-        public string codigo_postal { get; set; }
+        //public string cp { get; set; }
         public string calle { get; set; }
         public string estado { get; set; }
         public string ciudad { get; set; }
-        public byte tipoempleado { get; set; }
+        public byte tipo_empleado { get; set; }
         public string contraseña { get; set; }
     
         public usuario()
