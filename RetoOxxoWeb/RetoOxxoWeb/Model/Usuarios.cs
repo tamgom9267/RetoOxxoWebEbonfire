@@ -11,6 +11,7 @@ namespace RetoOxxoWeb.Model
         public string apellidom { get; set; }
         public string telefono { get; set; }
         public string fotografia { get; set; }
+
         public byte tipoempleado { get; set; }
         public string contraseña { get; set; }
         public string cp { get; set; }
