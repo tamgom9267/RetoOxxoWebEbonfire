@@ -289,7 +289,7 @@ namespace RetoOxxoWeb.Model
             string query = @"
                 SELECT 
                     id_usuario, nombre, apellidop, apellidom, telefono, fotografia, 
-                    codigo_postal, calle, estado, ciudad, tipoempleado
+                    calle, estado, ciudad, tipo_empleado
                 FROM usuario 
                 WHERE id_usuario = @id";
             MySqlCommand cmd = new MySqlCommand(query, conexion);
@@ -307,11 +307,11 @@ namespace RetoOxxoWeb.Model
                         apellidom = reader["apellidom"].ToString(),
                         telefono = reader["telefono"].ToString(),
                         fotografia = reader["fotografia"].ToString(),
-                        codigo_postal = reader["codigo_postal"].ToString(),
+                        //cp = reader["cp"].ToString(),
                         calle = reader["calle"].ToString(),
                         estado = reader["estado"].ToString(),
                         ciudad = reader["ciudad"].ToString(),
-                        tipoempleado = Convert.ToByte(reader["tipoempleado"])
+                        tipo_empleado = Convert.ToByte(reader["tipo_empleado"])
                     };
                 }
             }
@@ -345,7 +345,7 @@ namespace RetoOxxoWeb.Model
             LEFT JOIN decision d ON u.id_usuario = d.id_usuario
             LEFT JOIN laberinto l ON u.id_usuario = l.id_usuario
             LEFT JOIN taberna t ON u.id_usuario = t.id_usuario
-            GROUP BY u.id_usuario, us.nombre -- Agrupar también por nombre
+            GROUP BY u.id_usuario, us.nombre -- Agrupar por nombre
             ORDER BY puntos_totales desc;", conexion);
             
             UsuarioPuntaje usr1 = new UsuarioPuntaje();
