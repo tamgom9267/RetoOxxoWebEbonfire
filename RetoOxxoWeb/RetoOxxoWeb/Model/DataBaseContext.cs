@@ -10,7 +10,11 @@ namespace RetoOxxoWeb.Model
         public string ConnectionString {get; set;}
         public DataBaseContext()
         {
-            ConnectionString = "Server=127.0.0.1;Port=3306;Database=oxxojuego;Uid=root;password=root;";
+            ConnectionString = "Server=127.0.0.1;Port=3306;Database=oxxojuego;Uid=root;password=November-26-2004;";
+
+            // No se de quien es pero estaba antes = "Server=127.0.0.1;Port=3306;Database=oxxojuego;Uid=root;password=root;"
+
+            //Santiago = "Server=127.0.0.1;Port=3306;Database=oxxojuego;Uid=root;password=November-26-2004;"
         }
 
         private MySqlConnection GetConnection()
@@ -315,6 +319,55 @@ namespace RetoOxxoWeb.Model
 
         return usuario;
     }
+
+    public List<UsuarioPuntaje> GetPuntos()
+        {
+            List<UsuarioPuntaje> Puntajes = new List<UsuarioPuntaje>();
+            MySqlConnection conexion = GetConnection();
+            conexion.Open();
+
+            MySqlCommand cmd = new MySqlCommand(@"
+            SELECT 
+                u.id_usuario,
+                us.nombre AS nombre_usuario, -- Obtener el nombre del usuario
+                ROUND(COALESCE(SUM(d.puntos), 0), 2) AS puntos_decision,
+                ROUND(COALESCE(SUM(l.puntos), 0), 2) AS puntos_laberinto,
+                ROUND(COALESCE(SUM(t.puntos), 0), 2) AS puntos_taberna,
+                ROUND(COALESCE(SUM(d.puntos), 0) + COALESCE(SUM(l.puntos), 0) + COALESCE(SUM(t.puntos), 0), 2) AS puntos_totales
+            FROM (
+                SELECT DISTINCT id_usuario FROM decision 
+                UNION 
+                SELECT DISTINCT id_usuario FROM laberinto 
+                UNION 
+                SELECT DISTINCT id_usuario FROM taberna
+            ) u
+            JOIN usuario us ON u.id_usuario = us.id_usuario -- Unir con la tabla usuario
+            LEFT JOIN decision d ON u.id_usuario = d.id_usuario
+            LEFT JOIN laberinto l ON u.id_usuario = l.id_usuario
+            LEFT JOIN taberna t ON u.id_usuario = t.id_usuario
+            GROUP BY u.id_usuario, us.nombre -- Agrupar también por nombre
+            ORDER BY puntos_totales desc;", conexion);
+            
+            UsuarioPuntaje usr1 = new UsuarioPuntaje();
+
+            using (var reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Puntajes.Add(new UsuarioPuntaje
+                    {
+                        id_usuario = reader.GetInt32(0),
+                        nombre = reader.GetString(1),
+                        puntos_decision = reader.GetDecimal(2),
+                        puntos_laberinto = reader.GetDecimal(3),
+                        puntos_taberna = reader.GetDecimal(4),
+                        puntos_totales = reader.GetDecimal(5)
+                    });
+                }
+            }
+    
+            return Puntajes;
+        }
 
     }
 }
