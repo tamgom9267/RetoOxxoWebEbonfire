@@ -10,7 +10,7 @@ namespace RetoOxxoWeb.Model
         public string ConnectionString {get; set;}
         public DataBaseContext()
         {
-            ConnectionString = "Server=127.0.0.1;Port=3306;Database=oxxojuego;Uid=root;password=root;";
+            ConnectionString = "Server=127.0.0.1;Port=3306;Database=oxxojuego;Uid=root;password=;";
         }
 
         private MySqlConnection GetConnection()
@@ -184,6 +184,7 @@ namespace RetoOxxoWeb.Model
             return (porcentajeTaberna, porcentajeLaberinto, porcentajeDecision);
         }
 
+        /*
         public (int FoodService, int EjecucionPromociones, int EquiposCompletos, int Rotacion, int FaltanteEfectivo) GetMetricasDeTienda(int idUsuario)
         {
             int foodService = 0;
@@ -226,6 +227,7 @@ namespace RetoOxxoWeb.Model
 
             return (foodService, ejecucionPromociones, equiposCompletos, rotacion, faltanteEfectivo);
         }
+        */
 
         public string GetNombreUsuario(int idUsuario)
         {
@@ -256,7 +258,7 @@ namespace RetoOxxoWeb.Model
             MySqlConnection conexion = GetConnection();
             conexion.Open();
 
-            MySqlCommand cmd = new MySqlCommand("SELECT id_usuario, nombre, contraseña FROM usuario", conexion);
+            MySqlCommand cmd = new MySqlCommand("SELECT id_usuario, nom_usuario, nombre, contraseña FROM usuario", conexion);
             
             usuario usr1 = new usuario();
 
@@ -266,6 +268,7 @@ namespace RetoOxxoWeb.Model
                 {
                     usr1 = new usuario();
                     usr1.id_usuario = Convert.ToInt32(reader["id_usuario"]);
+                    usr1.nom_usuario = reader["nom_usuario"].ToString();
                     usr1.nombre = reader["nombre"].ToString();
                     usr1.contraseña = reader["contraseña"].ToString();
                     ListaUsuarios.Add(usr1);
@@ -303,7 +306,7 @@ namespace RetoOxxoWeb.Model
                         apellidom = reader["apellidom"].ToString(),
                         telefono = reader["telefono"].ToString(),
                         fotografia = reader["fotografia"].ToString(),
-                        codigo_postal = reader["codigo_postal"].ToString(),
+                        cp = reader["codigo_postal"].ToString(),
                         calle = reader["calle"].ToString(),
                         estado = reader["estado"].ToString(),
                         ciudad = reader["ciudad"].ToString(),
