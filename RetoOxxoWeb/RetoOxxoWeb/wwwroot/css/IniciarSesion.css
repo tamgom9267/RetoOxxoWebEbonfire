@@ -87,6 +87,11 @@ input::placeholder {
     background-color: #c90;
 }
 
+.register a{
+    color: white;
+    text-decoration: none;
+}
+
 .button-container {
     display: flex;
     justify-content: center;
