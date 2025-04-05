@@ -10,6 +10,7 @@ namespace RetoOxxoWeb.Model
         public string ConnectionString {get; set;}
         public DataBaseContext()
         {
+
             ConnectionString = "Server=mysql-3d246747-tec-acff.b.aivencloud.com;Port=25482;Database=oxxojuego;User Id=avnadmin;Password=AVNS_308DdCWk2oAlMYpGE-Q;SslMode=Required;";
 
             // No se de quien es pero estaba antes = "Server=127.0.0.1;Port=3306;Database=oxxojuego;Uid=root;password=root;"
@@ -310,11 +311,11 @@ namespace RetoOxxoWeb.Model
                         apellidom = reader["apellidom"].ToString(),
                         telefono = reader["telefono"].ToString(),
                         fotografia = reader["fotografia"].ToString(),
-                        cp = reader["cp"].ToString(
+                        cp = reader["cp"].ToString(),
                         calle = reader["calle"].ToString(),
                         estado = reader["estado"].ToString(),
                         ciudad = reader["ciudad"].ToString(),
-                        tipo_empleado = Convert.ToByte(reader["tipo_empleado"])
+                        tipoempleado = Convert.ToByte(reader["tipo_empleado"])
                     };
                 }
             }

@@ -53,8 +53,7 @@ namespace RetoOxxoWeb.Pages
                 Mensaje_registro = "Este nombre de usuario ya está en uso. Inténtalo de nuevo con un nombre diferente.";
                 return;
             } else {
-                //HttpContext.Session.SetInt32("usuarioID", usuarioValido.id_usuario);       
-                
+                //HttpContext.Session.SetInt32("usuarioID", usuarioValido.id_usuario);
             }
             Debug.WriteLine("Cuenta creada con éxito. Redirigiendo...");
             Response.Redirect("Index");
