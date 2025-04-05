@@ -311,11 +311,11 @@ namespace RetoOxxoWeb.Model
                         apellidom = reader["apellidom"].ToString(),
                         telefono = reader["telefono"].ToString(),
                         fotografia = reader["fotografia"].ToString(),
-                        cp = reader["cp"].ToString(),
+                        cp = Convert.ToInt32(reader["cp"]),
                         calle = reader["calle"].ToString(),
                         estado = reader["estado"].ToString(),
                         ciudad = reader["ciudad"].ToString(),
-                        tipoempleado = Convert.ToByte(reader["tipo_empleado"])
+                        tipo_empleado = Convert.ToByte(reader["tipo_empleado"])
                     };
                 }
             }
@@ -373,6 +373,28 @@ namespace RetoOxxoWeb.Model
             return Puntajes;
         }
 
+
+    public void NewUser(usuario nUsuario) {
+        MySqlConnection conexion = GetConnection();
+        conexion.Open();
+        
+        MySqlCommand cmd = new MySqlCommand(
+            @"INSERT into `usuario` 
+            (`nom_usuario`, `nombre`, `apellidoP`, `apellidoM`, `telefono`, `contraseña`)
+            values (
+            @nom_usuario, @nombre, @apellidoP, @apellidoM, @telefono, @contraseña)",
+            conexion);
+
+            cmd.Parameters.AddWithValue("@nom_usuario", nUsuario.nom_usuario);
+            cmd.Parameters.AddWithValue("@nombre", nUsuario.nombre);
+            cmd.Parameters.AddWithValue("@apellidoP", nUsuario.apellidop);
+            cmd.Parameters.AddWithValue("@apellidoM", nUsuario.apellidom);
+            cmd.Parameters.AddWithValue("@telefono", nUsuario.telefono);
+            cmd.Parameters.AddWithValue("@contraseña", nUsuario.contraseña);
+
+            cmd.ExecuteNonQuery();
+            }
+
     public List<UsuarioLogros> GetLogros()
         {
             List<UsuarioLogros> Logros = new List<UsuarioLogros>();
@@ -407,4 +429,5 @@ namespace RetoOxxoWeb.Model
         }
 
     }
+
 }

@@ -12,9 +12,9 @@ namespace RetoOxxoWeb.Model
         public string telefono { get; set; }
         public string fotografia { get; set; }
 
-        public byte tipoempleado { get; set; }
+        public byte tipo_empleado { get; set; }
         public string contraseña { get; set; }
-        public string cp { get; set; }
+        public int cp { get; set; }
         public string calle { get; set; }
         public string estado { get; set; }
         public string ciudad { get; set; }
