@@ -56,8 +56,6 @@ namespace RetoOxxoWeb.Pages
                 Debug.WriteLine("Usuario Repetido.");
                 Mensaje_registro = "Este nombre de usuario ya está en uso. Inténtalo de nuevo con un nombre diferente.";
                 return Page();
-            } else {
-                //HttpContext.Session.SetInt32("usuarioID", usuarioValido.id_usuario);
             }
 
             usuario nUsuario = new usuario {
@@ -74,7 +72,7 @@ namespace RetoOxxoWeb.Pages
             db.NewUser(nUsuario);
             
             Debug.WriteLine("Cuenta creada con éxito. Redirigiendo...");
-            return RedirectToPage("Index");
+            return RedirectToPage("./Index");
         }
     }
 }
