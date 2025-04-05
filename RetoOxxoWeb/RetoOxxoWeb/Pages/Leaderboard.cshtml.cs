@@ -8,7 +8,7 @@ public class LeaderboardModel : PageModel
 {
     private readonly DataBaseContext _context;
     public List<UsuarioPuntaje> Puntajes {get; set;}
-    
+    public List<UsuarioLogros> Logros {get; set;}
     public LeaderboardModel()
     {
         _context = new DataBaseContext();
@@ -16,5 +16,6 @@ public class LeaderboardModel : PageModel
     public void OnGet()
     {
         Puntajes = _context.GetPuntos();
+        Logros = _context.GetLogros();
     }
 }
