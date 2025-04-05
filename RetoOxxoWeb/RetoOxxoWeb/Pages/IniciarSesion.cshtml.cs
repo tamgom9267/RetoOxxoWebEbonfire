@@ -29,7 +29,7 @@ namespace RetoOxxoWeb.Pages
             Debug.WriteLine($"Usuario ingresado: {Nombre}, Contraseña ingresada: {Contraseña}");
 
             // Verificar si el usuario y la contraseña coinciden
-            var usuarioValido = usuarios.Find(u => u.nombre == Nombre && u.contraseña == Contraseña);
+            var usuarioValido = usuarios.Find(u => u.nom_usuario == Nombre && u.contraseña == Contraseña);
 
             if (usuarioValido != null)
             {

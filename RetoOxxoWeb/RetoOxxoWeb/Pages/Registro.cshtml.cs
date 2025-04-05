@@ -23,14 +23,18 @@ namespace RetoOxxoWeb.Pages
         [BindProperty]
         public string Contraseña {get; set; }
 
+        [BindProperty]
+        public string telefono { get; set; }
+
         public string Mensaje_registro { get; set; }
+
 
         public void OnGet()
         {
             ViewData["Mensaje_registro"] = "";
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
             DataBaseContext db = new DataBaseContext();
             List<usuario> usuarios = db.GetAllUsers(); 
@@ -51,12 +55,26 @@ namespace RetoOxxoWeb.Pages
             {
                 Debug.WriteLine("Usuario Repetido.");
                 Mensaje_registro = "Este nombre de usuario ya está en uso. Inténtalo de nuevo con un nombre diferente.";
-                return;
+                return Page();
             } else {
                 //HttpContext.Session.SetInt32("usuarioID", usuarioValido.id_usuario);
             }
+
+            usuario nUsuario = new usuario {
+                nom_usuario = Usuario,
+                contraseña = Contraseña,
+
+                nombre = Nombre,
+                apellidop = apellidoP,
+                apellidom = apellidoM,
+                
+                telefono = telefono,
+            };
+
+            db.NewUser(nUsuario);
+            
             Debug.WriteLine("Cuenta creada con éxito. Redirigiendo...");
-            Response.Redirect("Index");
+            return RedirectToPage("Index");
         }
     }
 }
