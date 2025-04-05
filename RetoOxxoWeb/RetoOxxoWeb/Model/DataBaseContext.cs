@@ -427,7 +427,6 @@ namespace RetoOxxoWeb.Model
     
             return Logros;
         }
-
     }
 
 }
