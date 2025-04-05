@@ -10,7 +10,8 @@ namespace RetoOxxoWeb.Model
         public string ConnectionString {get; set;}
         public DataBaseContext()
         {
-            ConnectionString = "Server=127.0.0.1;Port=3306;Database=oxxojuego;Uid=root;password=;";
+
+            ConnectionString = "Server=mysql-3d246747-tec-acff.b.aivencloud.com;Port=25482;Database=oxxojuego;User Id=avnadmin;Password=AVNS_308DdCWk2oAlMYpGE-Q;SslMode=Required;";
 
             // No se de quien es pero estaba antes = "Server=127.0.0.1;Port=3306;Database=oxxojuego;Uid=root;password=root;"
 
@@ -372,6 +373,7 @@ namespace RetoOxxoWeb.Model
             return Puntajes;
         }
 
+
     public void NewUser(usuario nUsuario) {
         MySqlConnection conexion = GetConnection();
         conexion.Open();
@@ -392,6 +394,40 @@ namespace RetoOxxoWeb.Model
 
             cmd.ExecuteNonQuery();
             }
+
+    public List<UsuarioLogros> GetLogros()
+        {
+            List<UsuarioLogros> Logros = new List<UsuarioLogros>();
+            MySqlConnection conexion = GetConnection();
+            conexion.Open();
+
+            MySqlCommand cmd = new MySqlCommand(@"
+            SELECT u.id_usuario, u.nombre, 
+                (logro_lab1 + logro_lab2 + logro_lab3 + logro_lab4 + 
+                logro_tab1 + logro_tab2 + logro_tab3 + logro_tab4 + 
+                logro_dec1 + logro_dec2 + logro_dec3 + logro_dec4) AS total_logros
+            FROM Logros l
+            JOIN usuario u ON l.id_usuario = u.id_usuario
+            Order by total_logros desc;", conexion);
+            
+            UsuarioPuntaje usr1 = new UsuarioPuntaje();
+
+            using (var reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Logros.Add(new UsuarioLogros
+                    {
+                        id_usuario = reader.GetInt32(0),
+                        nombre = reader.GetString(1),
+                        total_logros = reader.GetDecimal(2),
+                    });
+                }
+            }
+    
+            return Logros;
+        }
+
     }
 
 }
