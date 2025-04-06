@@ -26,10 +26,17 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
+        int? id = HttpContext.Session.GetInt32("usuarioID");
+        /*
+        if (id == null) {
+            Response.Redirect("IniciarSesion");
+            return;
+        }*/
+
         //var metricas = _context.GetMetricasDeTienda(4);
-        var (taberna, laberinto, decision) = _context.GetProgresoUsuario(4);
-        UsuarioEncima = _context.GetUsuarioEncima(4);
-        UsuarioDebajo = _context.GetUsuarioDebajo(4);
+        var (taberna, laberinto, decision) = _context.GetProgresoUsuario(id.Value);
+        UsuarioEncima = _context.GetUsuarioEncima(id.Value);
+        UsuarioDebajo = _context.GetUsuarioDebajo(id.Value);
         ProgresoTaberna = taberna;
         ProgresoLaberinto = laberinto;
         ProgresoDecision = decision;

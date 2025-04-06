@@ -69,9 +69,13 @@ namespace RetoOxxoWeb.Pages
                 telefono = telefono,
             };
 
-            db.NewUser(nUsuario);
+            nUsuario = db.NewUser(nUsuario);
             
             Debug.WriteLine("Cuenta creada con éxito. Redirigiendo...");
+
+            HttpContext.Session.SetInt32("usuarioID", nUsuario.id_usuario);
+            Response.Redirect("Index");
+            
             return RedirectToPage("./Index");
         }
     }

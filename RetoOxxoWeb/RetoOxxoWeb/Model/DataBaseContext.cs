@@ -374,7 +374,7 @@ namespace RetoOxxoWeb.Model
         }
 
 
-    public void NewUser(usuario nUsuario) {
+    public usuario NewUser(usuario nUsuario) {
         MySqlConnection conexion = GetConnection();
         conexion.Open();
         
@@ -393,7 +393,8 @@ namespace RetoOxxoWeb.Model
             cmd.Parameters.AddWithValue("@contraseña", nUsuario.contraseña);
 
             cmd.ExecuteNonQuery();
-            }
+            return nUsuario;
+        }
 
     public List<UsuarioLogros> GetLogros()
         {
