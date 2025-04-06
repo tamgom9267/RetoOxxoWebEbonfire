@@ -9,7 +9,7 @@ public class PrivacyModel : PageModel
     private readonly ILogger<PrivacyModel> _logger;
     private readonly DataBaseContext _dbContext;
 
-    public usuario Laura { get; set; }
+    public usuario user { get; set; }
 
     public PrivacyModel(ILogger<PrivacyModel> logger)
     {
@@ -19,7 +19,8 @@ public class PrivacyModel : PageModel
 
     public void OnGet()
     {
-        int idLaura = 4; // ID de Laura
-        Laura = _dbContext.GetUsuarioPorId(idLaura);
+        int? user_id = HttpContext.Session.GetInt32("usuarioID");
+
+        user = _dbContext.GetUsuarioPorId(user_id.Value);
     }
 }
