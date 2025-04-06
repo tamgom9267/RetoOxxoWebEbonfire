@@ -59,13 +59,13 @@ namespace RetoOxxoWeb.Model
                             laberinto l ON u.id_usuario = l.id_usuario
                         LEFT JOIN 
                             decision d ON u.id_usuario = d.id_usuario
-                        WHERE u.id_usuario = 4
+                        WHERE u.id_usuario = @idUsuarioActual
                     )
                     ORDER BY promedio_puntos DESC
                     LIMIT 1;";
 
                 MySqlCommand cmd = new MySqlCommand(queryArriba, conexion);
-                cmd.Parameters.AddWithValue("4", idUsuarioActual);
+                cmd.Parameters.AddWithValue("@idUsuarioActual", idUsuarioActual);
 
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -119,13 +119,13 @@ namespace RetoOxxoWeb.Model
                             laberinto l ON u.id_usuario = l.id_usuario
                         LEFT JOIN 
                             decision d ON u.id_usuario = d.id_usuario
-                        WHERE u.id_usuario = 4
+                        WHERE u.id_usuario = @idUsuarioActual
                     )
                     ORDER BY promedio_puntos ASC
                     LIMIT 1;";
 
                 MySqlCommand cmd = new MySqlCommand(queryAbajo, conexion);
-                cmd.Parameters.AddWithValue("4", idUsuarioActual);
+                cmd.Parameters.AddWithValue("@idUsuarioActual", idUsuarioActual);
 
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -167,10 +167,10 @@ namespace RetoOxxoWeb.Model
                     LEFT JOIN 
                         decision d ON u.id_usuario = d.id_usuario
                     WHERE 
-                        u.id_usuario = 4;";
+                        u.id_usuario = @idUsuarioActual;";
 
                 MySqlCommand cmd = new MySqlCommand(queryProgreso, conexion);
-                cmd.Parameters.AddWithValue("4", idUsuarioActual);
+                cmd.Parameters.AddWithValue("@idUsuarioActual", idUsuarioActual);
 
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -212,10 +212,10 @@ namespace RetoOxxoWeb.Model
                     FROM 
                         metricas_de_tienda
                     WHERE 
-                        id_usuario = 4;";
+                        id_usuario = @idUsuarioActual;";
 
                 MySqlCommand cmd = new MySqlCommand(queryMetricas, conexion);
-                cmd.Parameters.AddWithValue("4", idUsuario);
+                cmd.Parameters.AddWithValue("@idUsuarioActual", idUsuario);
 
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -242,9 +242,9 @@ namespace RetoOxxoWeb.Model
             {
                 conexion.Open();
 
-                string queryNombre = "SELECT nombre FROM usuario WHERE id_usuario = 4;";
+                string queryNombre = "SELECT nombre FROM usuario WHERE id_usuario = @idUsuario;";
                 MySqlCommand cmd = new MySqlCommand(queryNombre, conexion);
-                cmd.Parameters.AddWithValue("4", idUsuario);
+                cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
 
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -257,6 +257,7 @@ namespace RetoOxxoWeb.Model
 
             return nombreUsuario;
         }
+
         public List<usuario> GetAllUsers()
         {
             List<usuario> ListaUsuarios = new List<usuario>();
