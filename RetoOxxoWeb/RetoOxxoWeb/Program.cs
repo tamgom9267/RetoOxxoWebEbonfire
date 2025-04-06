@@ -43,7 +43,15 @@ app.MapRazorPages()
 
 app.MapGet("/", async context =>
 {
-    context.Response.Redirect("/IniciarSesion");
+    var userId = context.Session.GetInt32("usuarioID");
+    if (userId == null)
+    {
+        context.Response.Redirect("/IniciarSesion");
+    }
+    else
+    {
+        context.Response.Redirect("/Index");
+    }
 });
 
 app.Run();

@@ -12,8 +12,16 @@
 @inject RetoOxxoWeb.Model.DataBaseContext _context
 
 @{
-    var nombreUsuario = _context.GetNombreUsuario(4);
+    var userID = Context.Session.GetInt32("usuarioID");
+
+    string nombreUsuario = "Invitado";
+
+    if (userID != null)
+    {
+        nombreUsuario = _context.GetNombreUsuario(userID.Value);
+    }
 }
+
     <header>
         <div class="header-container">
             <a href="/Index" class="navbar-brand">
