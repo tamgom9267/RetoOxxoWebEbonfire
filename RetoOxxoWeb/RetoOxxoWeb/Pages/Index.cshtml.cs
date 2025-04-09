@@ -33,17 +33,17 @@ public class IndexModel : PageModel
             return;
         }
 
-        //var metricas = _context.GetMetricasDeTienda(4);
+        var metricas = _context.GetMetricasDeTienda(id.Value);
         var (taberna, laberinto, decision) = _context.GetProgresoUsuario(id.Value);
         UsuarioEncima = _context.GetUsuarioEncima(id.Value);
         UsuarioDebajo = _context.GetUsuarioDebajo(id.Value);
         ProgresoTaberna = taberna;
         ProgresoLaberinto = laberinto;
         ProgresoDecision = decision;
-        //FoodService = metricas.FoodService;
-        //EjecucionPromociones = metricas.EjecucionPromociones;
-        //EquiposCompletos = metricas.EquiposCompletos;
-        //Rotacion = metricas.Rotacion;
-        //FaltanteEfectivo = metricas.FaltanteEfectivo;
+        FoodService = metricas.FoodService;
+        EjecucionPromociones = metricas.EjecucionPromociones;
+        EquiposCompletos = metricas.EquiposCompletos;
+        Rotacion = metricas.Rotacion;
+        FaltanteEfectivo = metricas.FaltanteEfectivo;
     }
 }

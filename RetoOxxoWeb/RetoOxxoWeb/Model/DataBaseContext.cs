@@ -229,7 +229,7 @@ namespace RetoOxxoWeb.Model
             return (porcentajeTaberna, porcentajeLaberinto, porcentajeDecision);
         }
 
-        /*
+        
         public (int FoodService, int EjecucionPromociones, int EquiposCompletos, int Rotacion, int FaltanteEfectivo) GetMetricasDeTienda(int idUsuario)
         {
             int foodService = 0;
@@ -272,7 +272,7 @@ namespace RetoOxxoWeb.Model
 
             return (foodService, ejecucionPromociones, equiposCompletos, rotacion, faltanteEfectivo);
         }
-        */
+        
 
         public string GetNombreUsuario(int idUsuario)
         {
