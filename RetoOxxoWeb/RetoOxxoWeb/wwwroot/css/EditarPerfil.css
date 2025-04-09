@@ -1,0 +1,68 @@
+/* Este es el estilo principal de todo el formulario*/
+.formulario-perfil {
+    max-width: 500px; 
+    margin: 0 auto; /* Para tener el formulario horizontalmente*/
+    padding: 20px; 
+    background-color: #f9f9f9; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    font-family: Arial, sans-serif; 
+}
+
+/* Estilo para el título principal del formulario */
+h2 {
+    font-size: 80px; 
+    text-align: center; 
+    color: #333; 
+    margin-bottom: 20px;
+}
+
+/* Estilo para las etiquetas de los campos del formulario*/
+.formulario-perfil label {
+    display: block; /* Block hace que ocupen toda la linea*/
+    margin-bottom: 8px; 
+    font-weight: bold;
+    color: #555; 
+}
+
+/*Estilo para los campos de entrada, área de texto y selectores*/
+.formulario-perfil input[type="text"],
+.formulario-perfil input[type="email"],
+.formulario-perfil input[type="password"],
+.formulario-perfil textarea,
+.formulario-perfil select {
+    width: 100%; 
+    padding: 10px;
+    margin-bottom: 15px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    font-size: 14px;
+    box-sizing: border-box; /*Incluye el padding y el borde en el ancho total*/
+}
+
+/* Estilo para el botón del formulario */
+.formulario-perfil button {
+    width: 100%; 
+    padding: 10px; 
+    background-color: crimson;
+    color: #fff; 
+    border: none;
+    border-radius: 4px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; /* Una transicion para el cambio de color */
+}
+
+/* Estilo para el botón al pasar el cursor por encima */
+.formulario-perfil button:hover {
+    background-color: #950825; 
+}
+
+/* Estilo para los mensajes de error */
+.formulario-perfil .error-message {
+    color: red; /* Color del texto del mensaje de error */
+    font-size: 12px; /* Tamaño de fuente pequeño */
+    margin-top: -10px; /* Reduce el espacio superior */
+    margin-bottom: 10px; /* Espaciado inferior */
+}
