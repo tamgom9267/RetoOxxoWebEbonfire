@@ -14,7 +14,7 @@ namespace RetoOxxoWeb.Model
 
         public byte tipo_empleado { get; set; }
         public string contraseña { get; set; }
-        public int cp { get; set; }
+        public int? cp { get; set; }
         public string calle { get; set; }
         public string estado { get; set; }
         public string ciudad { get; set; }

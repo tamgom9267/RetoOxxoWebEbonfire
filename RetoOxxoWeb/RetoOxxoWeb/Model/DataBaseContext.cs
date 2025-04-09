@@ -83,6 +83,46 @@ namespace RetoOxxoWeb.Model
             return usuarioEncima;
         }
 
+        //Rodrigo
+        public void ActualizarUsuario(usuario u)
+        {
+            using (MySqlConnection conexion = GetConnection())
+            {
+                conexion.Open();
+                string query = @"
+                    UPDATE usuario
+                    SET nom_usuario = @nom_usuario,
+                        nombre = @nombre,
+                        apellidop = @apellidop,
+                        apellidom = @apellidom,
+                        telefono = @telefono,
+                        fotografia = @fotografia,
+                        tipo_empleado = @tipo_empleado,
+                        contraseña = @contraseña,
+                        calle = @calle,
+                        estado = @estado,
+                        ciudad = @ciudad,
+                        cp = @cp
+                    where id_usuario = @id_usuario;";
+                MySqlCommand cmd = new MySqlCommand(query, conexion);
+                cmd.Parameters.AddWithValue("@id_usuario", u.id_usuario);
+                cmd.Parameters.AddWithValue("@nom_usuario", u.nom_usuario);
+                cmd.Parameters.AddWithValue("@nombre", u.nombre);
+                cmd.Parameters.AddWithValue("@apellidop", u.apellidop);
+                cmd.Parameters.AddWithValue("@apellidom", u.apellidom);
+                cmd.Parameters.AddWithValue("@telefono", u.telefono);
+                cmd.Parameters.AddWithValue("@fotografia", u.fotografia);
+                cmd.Parameters.AddWithValue("@tipo_empleado", u.tipo_empleado);
+                cmd.Parameters.AddWithValue("@contraseña", u.contraseña);
+                cmd.Parameters.AddWithValue("@calle", u.calle);
+                cmd.Parameters.AddWithValue("@estado", u.estado);
+                cmd.Parameters.AddWithValue("@ciudad", u.ciudad);
+                cmd.Parameters.AddWithValue("@cp", u.cp);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public usuario GetUsuarioDebajo(int idUsuarioActual)
         {
             usuario usuarioDebajo = null;
@@ -286,44 +326,59 @@ namespace RetoOxxoWeb.Model
 
         public usuario GetUsuarioPorId(int idUsuario)
         {
-        usuario usuario = null;
+            usuario usuario = null;
 
-        using (MySqlConnection conexion = GetConnection())
-        {
-            conexion.Open();
-            string query = @"
-                SELECT 
-                    id_usuario, nombre, apellidop, apellidom, telefono, fotografia, 
-                    calle, estado, ciudad, tipo_empleado
-                FROM usuario 
-                WHERE id_usuario = @id";
-            MySqlCommand cmd = new MySqlCommand(query, conexion);
-            cmd.Parameters.AddWithValue("@id", idUsuario);
-
-            using (var reader = cmd.ExecuteReader())
+            using (MySqlConnection conexion = GetConnection())
             {
-                if (reader.Read())
+                conexion.Open();
+                string query = @"
+                    SELECT 
+                        id_usuario,
+                        nom_usuario,
+                        nombre,
+                        apellidop,
+                        apellidom,
+                        telefono,
+                        fotografia,
+                        contraseña,
+                        calle,
+                        estado,
+                        ciudad,
+                        cp,
+                        tipo_empleado
+                    FROM usuario 
+                    WHERE id_usuario = @id";
+
+                MySqlCommand cmd = new MySqlCommand(query, conexion);
+                cmd.Parameters.AddWithValue("@id", idUsuario);
+
+                using (var reader = cmd.ExecuteReader())
                 {
-                    usuario = new usuario
+                    if (reader.Read())
                     {
-                        id_usuario = Convert.ToInt32(reader["id_usuario"]),
-                        nombre = reader["nombre"].ToString(),
-                        apellidop = reader["apellidop"].ToString(),
-                        apellidom = reader["apellidom"].ToString(),
-                        telefono = reader["telefono"].ToString(),
-                        fotografia = reader["fotografia"].ToString(),
-                        cp = Convert.ToInt32(reader["cp"]),
-                        calle = reader["calle"].ToString(),
-                        estado = reader["estado"].ToString(),
-                        ciudad = reader["ciudad"].ToString(),
-                        tipo_empleado = Convert.ToByte(reader["tipo_empleado"])
-                    };
+                        usuario = new usuario
+                        {
+                            id_usuario = Convert.ToInt32(reader["id_usuario"]),
+                            nom_usuario = reader["nom_usuario"].ToString(),
+                            nombre = reader["nombre"].ToString(),
+                            apellidop = reader["apellidop"].ToString(),
+                            apellidom = reader["apellidom"].ToString(),
+                            telefono = reader["telefono"].ToString(),
+                            fotografia = reader["fotografia"].ToString(),
+                            contraseña = reader["contraseña"].ToString(),
+                            calle = reader["calle"].ToString(),
+                            estado = reader["estado"].ToString(),
+                            ciudad = reader["ciudad"].ToString(),
+                            cp = Convert.ToInt32(reader["cp"]),
+                            tipo_empleado = Convert.ToByte(reader["tipo_empleado"])
+                        };
+                    }
                 }
             }
+
+            return usuario;
         }
 
-        return usuario;
-    }
 
     public List<UsuarioPuntaje> GetPuntos()
         {

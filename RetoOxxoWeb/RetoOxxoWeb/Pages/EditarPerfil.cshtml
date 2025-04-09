@@ -1,28 +1,65 @@
-@page
-@model PrivacyModel
+@page "{id:int}"
+@model RetoOxxoWeb.Pages.Perfil.EditarPerfilModel
 @{
     ViewData["Title"] = "Editar Perfil";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Perfil</title>
-    <link rel="stylesheet" href="~/css/EditaerPerfil.css" asp-append-version="true">
-</head>
-<body>
-    <div class="container">
-        <h1>Editar Perfil</h1>
-        <img src="https://cdn.pixabay.com/photo/2021/06/07/13/46/user-6318011_1280.png" alt="Foto de Laura" class="profile-photo" />
-        <a href="#" class="button-small">Cambiar Foto</a>
-    <div class="form-section">
-        <h2>Datos Personales</h2>
-        <form>
-            
-        </form>
+<h2>Editar Perfil</h2>
+
+<form method="post">
+   
+    <input type="hidden" asp-for="Usuario.id_usuario" />
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div>
+        <label>Nombre de usuario:</label>
+        <input asp-for="Usuario.nom_usuario" class="form-control" />
     </div>
-    
-</body>
-</html>
+    <div>
+        <label>Nombre:</label>
+        <input asp-for="Usuario.nombre" class="form-control" />
+    </div>
+    <div>
+        <label>Apellido Paterno:</label>
+        <input asp-for="Usuario.apellidop" class="form-control" />
+    </div>
+    <div>
+        <label>Apellido Materno:</label>
+        <input asp-for="Usuario.apellidom" class="form-control" />
+    </div>
+    <div>
+        <label>Teléfono:</label>
+        <input asp-for="Usuario.telefono" class="form-control" />
+    </div>
+    <div>
+        <label>Fotografía (URL):</label>
+        <input asp-for="Usuario.fotografia" class="form-control" />
+    </div>
+    <div>
+        <label>Tipo de Empleado:</label>
+        <input asp-for="Usuario.tipo_empleado" class="form-control" />
+    </div>
+    <div>
+        <label>Contraseña:</label>
+        <input asp-for="Usuario.contraseña" class="form-control" type="password" />
+    </div>
+    <div>
+        <label>Calle:</label>
+        <input asp-for="Usuario.calle" class="form-control" />
+    </div>
+    <div>
+        <label>Estado:</label>
+        <input asp-for="Usuario.estado" class="form-control" />
+    </div>
+    <div>
+        <label>Ciudad:</label>
+        <input asp-for="Usuario.ciudad" class="form-control" />
+    </div>
+    <div>
+        <label>Código Postal:</label>
+        <input asp-for="Usuario.cp" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Guardar Cambios</button>
+</form>
