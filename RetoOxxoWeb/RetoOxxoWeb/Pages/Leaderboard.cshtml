@@ -33,11 +33,6 @@
                     <tbody>
                         @{var count = 1;}
                         @foreach (var usuario in Model.Puntajes){
-                            string rowClass = "";
-
-                            if (count == 1) { rowClass = "gold fw-bold"; }   
-                            else if (count == 2) { rowClass = "silver fw-bold"; } 
-                            else if (count == 3) { rowClass = "bronze fw-bold"; } 
                             <tr class="rowClass">
                                 <th scope="row">@count</th>
                                 <td>@usuario.nombre</td>
@@ -66,12 +61,7 @@
                     <tbody>
                         @{var count2 = 1;}
                         @foreach (var usuario in Model.Logros){
-                            string rowClass = "";
-
-                            if (count2 == 1) { rowClass = "gold fw-bold"; }   
-                            else if (count2 == 2) { rowClass = "silver fw-bold"; } 
-                            else if (count2 == 3) { rowClass = "bronze fw-bold"; } 
-                            <tr class="rowClass">
+                            <tr>
                                 <th scope="row">@count2</th>
                                 <td>@usuario.nombre</td>
                                 <td>@usuario.total_logros</td>
