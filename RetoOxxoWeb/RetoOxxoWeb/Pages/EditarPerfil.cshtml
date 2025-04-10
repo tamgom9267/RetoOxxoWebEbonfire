@@ -9,33 +9,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Codificación para caracteres especiales -->
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Permite que la página sea responsive en dispositivos móviles -->
-
     <link rel="stylesheet" href="~/css/EditarPerfil.css" asp-append-version="true" />
-    <!-- Vincula la hoja de estilo personalizada. El atributo 'asp-append-version' asegura que el navegador no use una versión vieja en caché -->
-
     <title>Document</title>
-    <!-- Título que aparecerá en la pestaña del navegador -->
 </head>
 <body>
     
     <h2>Editar Perfil</h2>
-    <!-- Título principal visible en la página -->
-
     <form method="post" class="formulario-perfil">
-        <!-- Formulario que enviará los datos mediante método POST. Usa una clase de estilo personalizada -->
+        <!-- Formulario que enviará los datos mediante método POST-->
 
         <input type="hidden" asp-for="Usuario.id_usuario"/>
-        <!-- Campo oculto para enviar el ID del usuario, necesario para hacer el UPDATE correcto -->
+        <!--Campo oculto para enviar el ID del usuario, necesario para hacer el UPDATE correcto-->
 
         <div asp-validation-summary="All" class="text-danger"></div>
-        <!-- Muestra los errores de validación del modelo, si los hay -->
+        <!-- Muestra los errores de validación del modelo, si los hay-->
 
         <!-- Campos del modelo usuario -->
-
         <div class="group-input">
             <label>Nombre de usuario:</label>
             <input asp-for="Usuario.nom_usuario" class="form-control" />
