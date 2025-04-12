@@ -1,22 +1,45 @@
 
-.customthead {
-  background-color: #f5d240 !important;
+/* Importar Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
 }
 
-.gold { 
-  background-color: #FFD700 !important;
-  color: black !important; 
-  font-weight: bold !important;
+/* Estilo del título principal */
+h1 {
+    background-color: #c00;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
 }
-        
-.silver { 
-  background-color: #C0C0C0 !important; 
-  color: black !important; 
-  font-weight: bold !important;
-} 
-        
-.bronze { 
-  background-color: #CD7F32 !important; 
-  color: black !important; 
-  font-weight: bold !important;
-} 
+
+/* Contenedor general */
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+/* Tablas */
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Encabezados de tabla */
+.table thead {
+    background-color: #c00;
+    color: white;
+    font-weight: bold;
+}
+
+/* Resaltar Top 3 en Leaderboard */
+tr.gold { background-color: #ffcc00 !important; color: black !important; }
+tr.silver { background-color: #c0c0c0 !important; color: black !important; }
+tr.bronze { background-color: #cd7f32 !important; color: white !important; }

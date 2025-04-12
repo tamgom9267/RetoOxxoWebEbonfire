@@ -9,6 +9,8 @@ public class LeaderboardModel : PageModel
     private readonly DataBaseContext _context;
     public List<UsuarioPuntaje> Puntajes {get; set;}
     public List<UsuarioLogros> Logros {get; set;}
+    public string PremioDelMes { get; set; } = "Tarjeta de regalo OXXO de $500";  // Puedes cambiarlo dinámicamente
+    public string PrimerLugar { get; set; }
     public LeaderboardModel()
     {
         _context = new DataBaseContext();
@@ -17,5 +19,14 @@ public class LeaderboardModel : PageModel
     {
         Puntajes = _context.GetPuntos();
         Logros = _context.GetLogros();
+
+        if (Puntajes.Any())
+        {
+            PrimerLugar = Puntajes.First().nombre;  // Obtener el primer lugar
+        }
+        else
+        {
+            PrimerLugar = "Nadie aún";
+        }
     }
 }

@@ -10,70 +10,82 @@
     <link rel="stylesheet" href="~/css/Leaderboard.css" asp-append-version="true">
 </head>
 <body>
-    <br></br>
+
+    <br>
     <div class="text-center">
-        <h1 class="p-4 text-center rounded" style="background-color: #ffdead; display: inline-block; font-size: 50px;">
-            Leaderboards
-        </h1>
+        <h1 class="p-4 text-center rounded">Leaderboards</h1>
     </div>
-    <br></br>
-    <div class="row align-items-center">
-        <div class="col-5">
+    <br>
+    <div class="text-center mt-4">
+    <h2 style="color: #c00;">🏆 Premio del Mes 🏆</h2>
+    <p style="font-size: 20px; font-weight: bold; color: #c90;">
+        <span style="color: #333;">Ganador:</span> @Model.PrimerLugar
+    </p>
+    <p style="font-size: 18px; color: #c00;">🎁 @Model.PremioDelMes 🎁</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <!-- Clasificación General -->
+        <div class="col-md-5">
             <div class="container">
-                <h2>Clasificación General (Semanal)</h2>
-                <div class="table-responsive" style="height: 200px; overflow-y: auto;">
+                <h2 style="color: #c00;">Clasificación General (Semanal)</h2>
+                <div class="table-responsive" style="height: 250px; overflow-y: auto;">
                     <table class="table table-bordered">
-                    <thead class="table-dark">
-                        <tr>
-                        <th scope="col">Posición</th>
-                        <th scope="col">Usuario</th>
-                        <th scope="col">Puntaje</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @{var count = 1;}
-                        @foreach (var usuario in Model.Puntajes){
-                            <tr class="rowClass">
-                                <th scope="row">@count</th>
-                                <td>@usuario.nombre</td>
-                                <td>@usuario.puntos_totales</td>
-                            </tr>
-                            count++;
-                        }
-                    </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-2"></div>
-        <div class="col-5">
-            <div class="container">
-                <h2>Clasificación por logros</h2>
-                <div class="table-responsive" style="height: 200px; overflow-y: auto;">
-                    <table class="table table-bordered">
-                    <thead class="table-dark">
-                        <tr>
-                        <th scope="col">Posición</th>
-                        <th scope="col">Usuario</th>
-                        <th scope="col">Logros Completos</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @{var count2 = 1;}
-                        @foreach (var usuario in Model.Logros){
+                        <thead>
                             <tr>
-                                <th scope="row">@count2</th>
-                                <td>@usuario.nombre</td>
-                                <td>@usuario.total_logros</td>
+                                <th>Posición</th>
+                                <th>Usuario</th>
+                                <th>Puntaje</th>
                             </tr>
-                            count2++;
-                        }
-                    </tbody>
+                        </thead>
+                        <tbody>
+                            @{ var count = 1; }
+                            @foreach (var usuario in Model.Puntajes) {
+                                string rowClass = count == 1 ? "gold" : count == 2 ? "silver" : count == 3 ? "bronze" : "";
+                                <tr class="@rowClass">
+                                    <th>@count</th>
+                                    <td>@usuario.nombre</td>
+                                    <td>@usuario.puntos_totales</td>
+                                </tr>
+                                count++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-1"></div>
+
+        <!-- Clasificación por Logros -->
+        <div class="col-md-5">
+            <div class="container">
+                <h2 style="color: #c00;">Clasificación por Logros</h2>
+                <div class="table-responsive" style="height: 250px; overflow-y: auto;">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Posición</th>
+                                <th>Usuario</th>
+                                <th>Logros Completos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ var count2 = 1; }
+                            @foreach (var usuario in Model.Logros) {
+                                <tr>
+                                    <th>@count2</th>
+                                    <td>@usuario.nombre</td>
+                                    <td>@usuario.total_logros</td>
+                                </tr>
+                                count2++;
+                            }
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
 </body>
 </html>
