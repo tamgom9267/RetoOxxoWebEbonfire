@@ -11,12 +11,27 @@
 }
 
 /* Estilo para el título principal del formulario */
-h2 {
-    font-size: 80px; 
-    text-align: center; 
-    color: #333; 
-    margin-bottom: 20px;
+.titulo-editar {
+    text-align: center;
+    font-size: 48px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative; 
 }
+
+.titulo-editar::after {
+    content: ""; 
+    display: block; 
+    width: 80px; 
+    height: 4px; 
+    background-color: crimson; 
+    margin: 10px auto 0 auto; 
+    border-radius: 2px; 
+}
+
 
 /* Estilo para las etiquetas de los campos del formulario*/
 .formulario-perfil label {
@@ -70,7 +85,8 @@ h2 {
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    gap: 20px 30px;
+    width: 100%;
 }
 
 .row {
@@ -80,20 +96,26 @@ h2 {
 }
 
 .columna {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.group-input {
     display: flex;
     flex-direction: column;
 }
 
-.group-input {
-    margin-bottom: 18px;
+.group-input label {
+    font-weight: bold;
+    margin-bottom: 6px;
 }
 
 .form-control {
-    width: 100%;
-    padding: 10px;
+    height: 40px;
+    padding: 8px 12px;
     border-radius: 4px;
     border: 1px solid #ccc;
-    box-sizing: border-box;
+    font-size: 14px;
 }
 
 .error-message {

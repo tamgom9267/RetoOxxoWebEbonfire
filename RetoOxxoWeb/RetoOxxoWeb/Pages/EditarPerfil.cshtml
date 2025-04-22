@@ -15,95 +15,90 @@
 </head>
 <body>
     
-    <h2>Editar Perfil</h2>
+    <h2 class="titulo-editar">Editar Perfil</h2>
     <form method="post" class="formulario-perfil" row" novalidate>
         <!-- Formulario que enviará los datos mediante método POST-->
 
         <input type="hidden" asp-for="Usuario.id_usuario"/>
         <!--Campo oculto para enviar el ID del usuario, necesario para hacer el UPDATE correcto-->
         <div class="form-grid">
-            <div class="columna">
-                <!-- Campos del modelo usuario -->
-                <div class="group-input">
-                    <label>Nombre de usuario:</label>
-                    <input asp-for="Usuario.nom_usuario" class="form-control" />
-                    <span asp-validation-for="Usuario.nom_usuario" class="error-message"></span>
-                </div>
-
-                <div class="group-input">
-                    <label>Nombre:</label>
-                    <input asp-for="Usuario.nombre" class="form-control" />
-                    <span asp-validation-for="Usuario.nombre" class="error-message"></span>
-                </div>
-
-                <div class="group-input">
-                    <label>Apellido Paterno:</label>
-                    <input asp-for="Usuario.apellidop" class="form-control" />
-                    <span asp-validation-for="Usuario.apellidop" class="error-message"></span>
-                </div>
-
-                <div class="group-input">
-                    <label>Apellido Materno:</label>
-                    <input asp-for="Usuario.apellidom" class="form-control" />
-                    <span asp-validation-for="Usuario.apellidom" class="error-message"></span>
-                </div>
-
-                <div class="group-input">
-                    <label>Teléfono:</label>
-                    <input asp-for="Usuario.telefono" class="form-control" />
-                    <span asp-validation-for="Usuario.telefono" class="error-message"></span>
-                </div>
-
-                <div class="group-input">
-                    <label>Fotografía (URL):</label>
-                    <input asp-for="Usuario.fotografia" class="form-control" />
-                    <span asp-validation-for="Usuario.fotografia" class="error-message"></span>
-                </div>
+            <div class="group-input">
+                <label asp-for="Usuario.nom_usuario">Nombre de usuario</label>
+                <input asp-for="Usuario.nom_usuario" class="form-control" />
+                <span asp-validation-for="Usuario.nom_usuario" class="error-message"></span>
             </div>
 
+            <div class="group-input">
+                <label asp-for="Usuario.tipo_empleado">Tipo de empleado</label>
+                <input asp-for="Usuario.tipo_empleado" class="form-control" />
+                <span asp-validation-for="Usuario.tipo_empleado" class="error-message"></span>
+            </div>
 
-            <div class="columna">
-                <div class="group-input">
-                    <label>Tipo de Empleado:</label>
-                    <input asp-for="Usuario.tipo_empleado" class="form-control" />
-                    <span asp-validation-for="Usuario.tipo_empleado" class="error-message"></span>
-                </div>
+            <div class="group-input">
+                <label asp-for="Usuario.nombre">Nombre</label>
+                <input asp-for="Usuario.nombre" class="form-control" />
+                <span asp-validation-for="Usuario.nombre" class="error-message"></span>
+            </div>
 
-                <div class="group-input">
-                    <label>Contraseña:</label>
-                    <input asp-for="Usuario.contraseña" class="form-control" type="password" />
-                    <span asp-validation-for="Usuario.contraseña" class="error-message"></span>
-                </div>
+            <div class="group-input">
+                <label asp-for="Usuario.contraseña">Contraseña</label>
+                <input asp-for="Usuario.contraseña" type="password" class="form-control" />
+                <span asp-validation-for="Usuario.contraseña" class="error-message"></span>
+            </div>
 
-                <div class="group-input">
-                    <label>Calle:</label>
-                    <input asp-for="Usuario.calle" class="form-control" />
-                    <span asp-validation-for="Usuario.calle" class="error-message"></span>
-                </div>
+            <div class="group-input">
+                <label asp-for="Usuario.apellidop">Primer apellido</label>
+                <input asp-for="Usuario.apellidop" class="form-control" />
+                <span asp-validation-for="Usuario.apellidop" class="error-message"></span>
+            </div>
 
-                <div class="group-input">
-                    <label>Estado:</label>
-                    <input asp-for="Usuario.estado" class="form-control" />
-                    <span asp-validation-for="Usuario.estado" class="error-message"></span>
-                </div>
+            <div class="group-input">
+                <label asp-for="Usuario.calle">Calle</label>
+                <input asp-for="Usuario.calle" class="form-control" />
+                <span asp-validation-for="Usuario.calle" class="error-message"></span>
+            </div>
 
-                <div class="group-input">
-                    <label>Ciudad:</label>
-                    <input asp-for="Usuario.ciudad" class="form-control" />
-                    <span asp-validation-for="Usuario.ciudad" class="error-message"></span>
-                </div>
+            <div class="group-input">
+                <label asp-for="Usuario.apellidom">Segundo apellido</label>
+                <input asp-for="Usuario.apellidom" class="form-control" />
+                <span asp-validation-for="Usuario.apellidom" class="error-message"></span>
+            </div>
 
-                <div class="group-input">
-                    <label>Código Postal:</label>
-                    <input asp-for="Usuario.cp" class="form-control" />
-                    <span asp-validation-for="Usuario.cp" class="error-message"></span>
-                </div>
+            <div class="group-input">
+                <label asp-for="Usuario.estado">Estado</label>
+                <input asp-for="Usuario.estado" class="form-control" />
+                <span asp-validation-for="Usuario.estado" class="error-message"></span>
+            </div>
+
+            <div class="group-input">
+                <label asp-for="Usuario.telefono">Teléfono</label>
+                <input asp-for="Usuario.telefono" class="form-control" />
+                <span asp-validation-for="Usuario.telefono" class="error-message"></span>
+            </div>
+
+            <div class="group-input">
+                <label asp-for="Usuario.ciudad">Ciudad</label>
+                <input asp-for="Usuario.ciudad" class="form-control" />
+                <span asp-validation-for="Usuario.ciudad" class="error-message"></span>
+            </div>
+
+            <div class="group-input">
+                <label asp-for="Usuario.fotografia">Fotografía</label>
+                <input asp-for="Usuario.fotografia" class="form-control" />
+                <span asp-validation-for="Usuario.fotografia" class="error-message"></span>
+            </div>
+
+            <div class="group-input">
+                <label asp-for="Usuario.cp">Código Postal</label>
+                <input asp-for="Usuario.cp" class="form-control" />
+                <span asp-validation-for="Usuario.cp" class="error-message"></span>
             </div>
         </div>
-        <div style="grid-column: span 2;">
+
+        <div class="group-input" style="grid-column: span 2;">
             <button type="submit" class="btn btn-primary mt-3">Guardar Cambios</button>
-            <!-- Botón para enviar el formulario. Usa clases de estilo para apariencia Bootstrap o personalizada -->
         </div>
+
     </form>
 
 </body>
