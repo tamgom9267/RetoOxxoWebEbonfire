@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RetoOxxoWeb.Model
 {
@@ -31,6 +32,9 @@ namespace RetoOxxoWeb.Model
         [StringLength(100, ErrorMessage = "La imagen debe tener al menos 10 caracteres", MinimumLength = 10)]
         public string fotografia { get; set; }
 
+        [NotMapped]
+        public IFormFile FotoArchivo { get; set; }
+
 
         [Required(ErrorMessage = "El tipo de empleado es obligatorio")]
         [Range(0, 1, ErrorMessage = "El tipo de empleado debe ser 0 o 1")]
@@ -41,23 +45,22 @@ namespace RetoOxxoWeb.Model
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$", ErrorMessage = "La contraseña debe contener al menos una letra mayúscula, una letra minúscula y un número")]
         public string contraseña { get; set; }
 
+        [NotMapped]
+        [Compare("contraseña", ErrorMessage = "Las contraseñas no coinciden")]
+        public string ConfirmarContraseña { get; set; }
+
         [Required(ErrorMessage = "El codigo postal es obligatorio")]
         [Range(10000, 10004, ErrorMessage = "El codigo postal debe ser un número de 5 dígitos")]
         public int? cp { get; set; }
 
         [Required(ErrorMessage = "La calle es obligatoria")]
-        [StringLength(50, ErrorMessage = "La calle debe tener al menos 6 caracteres", MinimumLength = 6)]
-        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "La calle solo puede contener letras y espacios")]
+        [StringLength(50, ErrorMessage = "La calle debe tener al menos 4 caracteres", MinimumLength = 4)]
         public string calle { get; set; }
 
         [Required(ErrorMessage = "El estado es obligatorio")]
-        [StringLength(50, ErrorMessage = "El estado debe tener al menos 6 caracteres", MinimumLength = 6)]
-        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "El estado solo puede contener letras y espacios")]
         public string estado { get; set; }
 
         [Required(ErrorMessage = "La ciudad es obligatoria")]
-        [StringLength(50, ErrorMessage = "La ciudad debe tener al menos 6 caracteres", MinimumLength = 6)]
-        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "La ciudad solo puede contener letras y espacios")]
         public string ciudad { get; set; }
     
         public usuario()

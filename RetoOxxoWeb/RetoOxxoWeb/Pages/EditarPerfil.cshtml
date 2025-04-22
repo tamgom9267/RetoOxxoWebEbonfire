@@ -16,7 +16,7 @@
 <body>
     
     <h2 class="titulo-editar">Editar Perfil</h2>
-    <form method="post" class="formulario-perfil" row" novalidate>
+    <form method="post" class="formulario-perfil" enctype="multipart/form-data" novalidate>
         <!-- Formulario que enviará los datos mediante método POST-->
 
         <input type="hidden" asp-for="Usuario.id_usuario"/>
@@ -30,7 +30,11 @@
 
             <div class="group-input">
                 <label asp-for="Usuario.tipo_empleado">Tipo de empleado</label>
-                <input asp-for="Usuario.tipo_empleado" class="form-control" />
+                <select asp-for="Usuario.tipo_empleado" class="form-control">
+                    <option value="">Seleccione un tipo de empleado</option>
+                    <option value="0">Gerente</option>
+                    <option value="1">Asesor</option>
+                </select>
                 <span asp-validation-for="Usuario.tipo_empleado" class="error-message"></span>
             </div>
 
@@ -45,6 +49,13 @@
                 <input asp-for="Usuario.contraseña" type="password" class="form-control" />
                 <span asp-validation-for="Usuario.contraseña" class="error-message"></span>
             </div>
+
+            <div class="group-input">
+                <label asp-for="Usuario.ConfirmarContraseña">Confirmar contraseña</label>
+                <input asp-for="Usuario.ConfirmarContraseña" type="password" class="form-control" />
+                <span asp-validation-for="Usuario.ConfirmarContraseña" class="error-message"></span>
+            </div>
+
 
             <div class="group-input">
                 <label asp-for="Usuario.apellidop">Primer apellido</label>
@@ -66,7 +77,12 @@
 
             <div class="group-input">
                 <label asp-for="Usuario.estado">Estado</label>
-                <input asp-for="Usuario.estado" class="form-control" />
+                <select asp-for="Usuario.estado" class="form-control">
+                    <option value="">Seleccione un estado</option>
+                    <option>CDMX</option>
+                    <option>Nuevo León</option>
+                    <option>Jalisco</option>
+                </select>
                 <span asp-validation-for="Usuario.estado" class="error-message"></span>
             </div>
 
@@ -78,13 +94,18 @@
 
             <div class="group-input">
                 <label asp-for="Usuario.ciudad">Ciudad</label>
-                <input asp-for="Usuario.ciudad" class="form-control" />
+                <select asp-for="Usuario.ciudad" class="form-control">
+                    <option value="">Seleccione una ciudad</option>
+                    <option>Ciudad A</option>
+                    <option>Ciudad B</option>
+                    <option>Ciudad C</option>
+                </select>
                 <span asp-validation-for="Usuario.ciudad" class="error-message"></span>
             </div>
 
             <div class="group-input">
                 <label asp-for="Usuario.fotografia">Fotografía</label>
-                <input asp-for="Usuario.fotografia" class="form-control" />
+                <input asp-for="Usuario.fotografia" type="file" class="form-control" accept="image/*" />
                 <span asp-validation-for="Usuario.fotografia" class="error-message"></span>
             </div>
 
@@ -95,10 +116,11 @@
             </div>
         </div>
 
-        <div class="group-input" style="grid-column: span 2;">
-            <button type="submit" class="btn btn-primary mt-3">Guardar Cambios</button>
+        
+        <div class="btn-container">
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            <button type="reset" class="btn btn-secondary">Limpiar</button>
         </div>
-
     </form>
 
 </body>

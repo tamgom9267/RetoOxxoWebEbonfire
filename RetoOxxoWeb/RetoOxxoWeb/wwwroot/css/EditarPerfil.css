@@ -1,125 +1,138 @@
-/* Este es el estilo principal de todo el formulario*/
+/* Contenedor principal del formulario */
 .formulario-perfil {
-    max-width: 500px; 
-    margin: 0 auto; /* Para tener el formulario horizontalmente*/
-    padding: 20px; 
-    background-color: #f9f9f9; 
-    border: 1px solid #ddd; 
-    border-radius: 8px; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    font-family: Arial, sans-serif; 
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Estilo para el título principal del formulario */
+/* Título del formulario */
 .titulo-editar {
     text-align: center;
     font-size: 48px;
     font-weight: bold;
     color: #333;
-    margin-top: 40px;
     margin-bottom: 30px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    position: relative; 
+    position: relative;
 }
 
 .titulo-editar::after {
-    content: ""; 
-    display: block; 
-    width: 80px; 
-    height: 4px; 
-    background-color: crimson; 
-    margin: 10px auto 0 auto; 
-    border-radius: 2px; 
-}
-
-
-/* Estilo para las etiquetas de los campos del formulario*/
-.formulario-perfil label {
-    display: block; /* Block hace que ocupen toda la linea*/
-    margin-bottom: 8px; 
-    font-weight: bold;
-    color: #555; 
-}
-
-/*Estilo para los campos de entrada, área de texto y selectores*/
-.formulario-perfil input[type="text"],
-.formulario-perfil input[type="email"],
-.formulario-perfil input[type="password"],
-.formulario-perfil textarea,
-.formulario-perfil select {
-    width: 100%; 
-    padding: 10px;
-    margin-bottom: 15px; 
-    border: 1px solid #ccc; 
-    border-radius: 4px; 
-    font-size: 14px;
-    box-sizing: border-box; /*Incluye el padding y el borde en el ancho total*/
-}
-
-/* Estilo para el botón del formulario */
-.formulario-perfil button {
-    width: 100%; 
-    padding: 10px; 
+    content: "";
+    display: block;
+    width: 80px;
+    height: 4px;
     background-color: crimson;
-    color: #fff; 
-    border: none;
-    border-radius: 4px; 
-    font-size: 16px; 
-    cursor: pointer; 
-    transition: background-color 0.3s ease; /* Una transicion para el cambio de color */
+    margin: 10px auto 0;
+    border-radius: 2px;
 }
 
-/* Estilo para el botón al pasar el cursor por encima */
-.formulario-perfil button:hover {
-    background-color: #950825; 
-}
-
-/* Estilo para los mensajes de error */
-.formulario-perfil .error-message {
-    color: red; /* Color del texto del mensaje de error */
-    font-size: 12px; /* Tamaño de fuente pequeño */
-    margin-top: -10px; /* Reduce el espacio superior */
-    margin-bottom: 10px; /* Espaciado inferior */
-}
-
+/* Layout de dos columnas */
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px 30px;
-    width: 100%;
 }
 
-.row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-}
-
-.columna {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
+/* Agrupador de cada campo */
 .group-input {
     display: flex;
     flex-direction: column;
+    margin-bottom: 10px;
 }
 
+/* Etiquetas */
 .group-input label {
     font-weight: bold;
     margin-bottom: 6px;
+    color: #555;
 }
 
+/* Inputs y selects */
 .form-control {
     height: 40px;
     padding: 8px 12px;
     border-radius: 4px;
     border: 1px solid #ccc;
     font-size: 14px;
+    box-sizing: border-box;
 }
 
+/* Archivos (foto) */
+.formulario-perfil input[type="file"] {
+    padding: 4px;
+}
+
+/* Mensajes de error */
 .error-message {
     color: red;
     font-size: 12px;
     margin-top: 4px;
 }
+
+/* Contenedor de botones */
+.btn-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+/* Botones */
+.btn-container button {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+    border-radius: 8px;
+    border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+/* Botón guardar */
+.btn-primary {
+    background-color: crimson;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #a30f2d;
+}
+
+/* Botón limpiar */
+.btn-secondary {
+    background-color: #e4e4e4;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background-color: #ccc;
+}
+
+/* Estilo visual moderno para select */
+.formulario-perfil select.form-control {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23555" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    padding-right: 30px;
+    font-weight: 500;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.formulario-perfil select.form-control:focus {
+    border-color: crimson;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(220, 20, 60, 0.2);
+}
+
