@@ -9,6 +9,7 @@ namespace RetoOxxoWeb.Pages.Perfil
         // Esta propiedad se enlaza directamente con los datos recibidos del formulario
         [BindProperty]
         public usuario Usuario { get; set; }
+        public string userFoto { get; set; }
         
         // Método que se ejecuta al cargar la página usando un GET cargando los datos del usuario
         public IActionResult OnGet(int id)
@@ -17,6 +18,7 @@ namespace RetoOxxoWeb.Pages.Perfil
             var db = new DataBaseContext();
             // Se obtiene el usuario por el ID proporcionado y se asigna a la propiedad Usuario
             Usuario = db.GetUsuarioPorId(id);
+            userFoto = HttpContext.Session.GetString("userFoto");
 
             //Si no se encuentra el usuario se regresa un error
             if (Usuario == null)

@@ -33,7 +33,7 @@
             @if (idUsuario != null)
             {
                 <a href="/EditarPerfil/@Context.Session.GetInt32("usuarioID")" class="navbar-brand">
-                    <img src="https://cdn.pixabay.com/photo/2021/06/07/13/46/user-6318011_1280.png" alt="Icono de Usuario" class="menu_usuario">
+                    <img src="@(Model.userFoto ?? "https://cdn.pixabay.com/photo/2021/06/07/13/46/user-6318011_1280.png")" alt="Imagen de usuario" class="img-rank">
                 </a>
             }
             @if (ViewContext.RouteData.Values["page"]?.ToString() == "/Index")
