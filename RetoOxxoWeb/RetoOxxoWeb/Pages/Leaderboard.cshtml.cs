@@ -11,6 +11,7 @@ public class LeaderboardModel : PageModel
     public List<UsuarioLogros> Logros {get; set;}
     public string PremioDelMes { get; set; } = "Tarjeta de regalo OXXO de $500";  // Puedes cambiarlo dinámicamente
     public string PrimerLugar { get; set; }
+    public string userFoto { get; set; }
     public LeaderboardModel()
     {
         _context = new DataBaseContext();
@@ -19,6 +20,7 @@ public class LeaderboardModel : PageModel
     {
         Puntajes = _context.GetPuntos();
         Logros = _context.GetLogros();
+        userFoto = HttpContext.Session.GetString("userFoto");
 
         if (Puntajes.Any())
         {
