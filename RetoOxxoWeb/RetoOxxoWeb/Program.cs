@@ -19,6 +19,17 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.Add(new ServiceDescriptor(typeof(DataBaseContext), new DataBaseContext()));
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+
 var app = builder.Build();
 
 // Configurar el middleware
@@ -31,6 +42,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseCors();
 
 // Usar sesiones
 app.UseSession();
