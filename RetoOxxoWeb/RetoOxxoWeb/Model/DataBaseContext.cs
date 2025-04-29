@@ -460,6 +460,41 @@ namespace RetoOxxoWeb.Model
 
 						return Logros;
 				}
+		
+		public List<InfoJuego> GetDatosJuego()
+				{
+					List<InfoJuego> DatosJuego = new List<InfoJuego>();
+					MySqlConnection conexion = GetConnection();
+					conexion.Open();
+
+					MySqlCommand cmd = new MySqlCommand(@"
+						SELECT id_info, historia, personajes_nombre, personaje_desc, 
+							como_ganar, como_perder, creditos, licensia, Controles
+						FROM InfoJuego;
+					", conexion);
+
+					using (var reader = cmd.ExecuteReader())
+					{
+						while (reader.Read())
+						{
+							DatosJuego.Add(new InfoJuego
+							{
+								id_info = reader.GetInt32("id_info"),
+								historia = reader["historia"] as string,
+								personajes_nombre = reader["personajes_nombre"] as string,
+								personaje_desc = reader["personaje_desc"] as string,
+								como_ganar = reader["como_ganar"] as string,
+								como_perder = reader["como_perder"] as string,
+								creditos = reader["creditos"] as string,
+								licensia = reader["licensia"] as string,
+								Controles = reader["Controles"] as string
+							});
+						}
+					}
+
+					return DatosJuego;
+				}
+
 		}
 
 }
