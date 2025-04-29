@@ -53,7 +53,7 @@
 						</div>
 
 						<div class="col-md-6">
-
+								
 										<div class="card custom-card">
 												<div class="card-body">
 														<h5 class="card-title text-center">Progreso de Capacitación</h5>
@@ -83,6 +83,7 @@
 						</div>
 
 						<div class="col-md-3">
+							<a href="/Dashboard/@HttpContext.Session.GetInt32("usuarioID")" class="tarjetas-botones">
 								<div class="card custom-card">
 										<div class="card-body">
 												<h5 class="card-title text-center">Métricas de tiendas</h5>
@@ -99,22 +100,23 @@
 														</div>
 														<!-- Tercera Métrica-->
 														<div class="d-flex justify-content-between mb-3">
-																<p class="metric-description mb-0">Equipos Completos:</p>
-																<p class="metric-value mb-0">@Model.EquiposCompletos%</p>
+																<p class="metric-description mb-0">Efectividad Horarios:</p>
+																<p class="metric-value mb-0">@Model.EfectividadHorarios%</p>
 														</div>
 														<!-- Cuarta Métrica-->
 														<div class="d-flex justify-content-between mb-3">
-																<p class="metric-description mb-0">Rotación:</p>
-																<p class="metric-value mb-0">@Model.Rotacion%</p>
+																<p class="metric-description mb-0">Planogramas:</p>
+																<p class="metric-value mb-0">@Model.Planogramas%</p>
 														</div>
 														<!-- Quinta Métrica-->
 														<div class="d-flex justify-content-between mb-3">
-																<p class="metric-description mb-0">Faltante de Efectivo:</p>
-																<p class="metric-value mb-0">@Model.FaltanteEfectivo$</p>
+																<p class="metric-description mb-0">Clasifiacion Tiendas:</p>
+																<p class="metric-value mb-0">@Model.ClasificacionTiendas%</p>
 														</div>
 												</div>
 										</div>
 								</div>
+							</a>
 						</div>
 				</div>
 				<!-- Botón de Jugar-->
