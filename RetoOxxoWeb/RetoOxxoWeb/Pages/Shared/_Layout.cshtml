@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using RetoOxxoWeb.Model
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -46,7 +47,7 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="/Index">Pagina Principal</a></li>
-                    <li><a class="dropdown-item" href="/Progreso_Capacitacion">Capacitaciones</a></li>
+                    <li><a class="dropdown-item" href="/Dashboard/@Context.Session.GetInt32("usuarioID")">Dashboard</a></li>
                     <li><a class="dropdown-item" href="/Leaderboard">Leaderboard</a></li>
                     <li><a class="dropdown-item" href="/IniciarSesion">Cerrar Sesión</a></li>
                 </ul>

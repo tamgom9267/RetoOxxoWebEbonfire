@@ -1,0 +1,39 @@
+﻿@page "{param_usuario:int}"
+@model RetoOxxoWeb.Pages.DashboardModel
+
+@{
+    Layout = "_Layout";
+}
+
+<h1>Panel de Usuario: @Model.param_usuario</h1>
+
+<div class="dashboard-container">
+    <iframe 
+        id="dashboard"
+        width="1080" 
+        height="720" 
+        frameborder="0" 
+        style="border:0; border-radius:15px;" 
+        allowfullscreen>
+    </iframe>
+</div>
+
+@section Scripts {
+<script>
+    // Tomar el param_usuario directamente de Razor de forma segura
+    const usuarioId = @Model.param_usuario ?? 0;
+
+    if (usuarioId !== 0) {
+        const iframe = document.getElementById('dashboard');
+        // Armar correctamente el parámetro para Looker embebido
+        iframe.src = "https://lookerstudio.google.com/embed/reporting/54726159-0319-40d7-9f34-75f933c0363d/page/blaIF?params=" + encodeURIComponent(JSON.stringify({
+            param_usuario: usuarioId
+        }));
+    } else {
+        document.getElementById('dashboard').style.display = 'none';
+        const errorDiv = document.createElement('div');
+        errorDiv.innerHTML = "<h2 style='color:red; text-align:center;'>No se recibió ID de usuario válido</h2>";
+        document.querySelector('.dashboard-container').appendChild(errorDiv);
+    }
+</script>
+}
