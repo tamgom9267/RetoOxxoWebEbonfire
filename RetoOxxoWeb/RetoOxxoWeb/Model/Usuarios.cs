@@ -9,19 +9,19 @@ namespace RetoOxxoWeb.Model
         public int id_usuario { get; set; }
 
         [Required(ErrorMessage = "El nombre de usuario es obligatorio")]
-        [StringLength(20, ErrorMessage = "El nombre de usuario debe tener al menos 6 caracteres", MinimumLength = 8)]
+        [StringLength(20, ErrorMessage = "El nombre de usuario debe tener al menos 1 caracteres", MinimumLength = 1)]
         public string nom_usuario {get; set; }
 
         [Required(ErrorMessage = "El nombre es obligatorio")]
-        [StringLength(20, ErrorMessage = "El nombre debe tener al menos 6 caracteres", MinimumLength = 6)]
+        [StringLength(20, ErrorMessage = "El nombre debe tener al menos 1 caracteres", MinimumLength = 1)]
         public string nombre { get; set; }
 
         [Required(ErrorMessage = "El apellido paterno es obligatorio")]
-        [StringLength(20, ErrorMessage = "El apellido paterno debe tener al menos 6 caracteres", MinimumLength = 6)]
+        [StringLength(20, ErrorMessage = "El apellido paterno debe tener al menos 1 caracteres", MinimumLength = 1)]
         public string apellidop { get; set; }
 
         [Required(ErrorMessage = "El apellido materno es obligatorio")]
-        [StringLength(20, ErrorMessage = "El apellido materno debe tener al menos 6 caracteres", MinimumLength = 6)]
+        [StringLength(20, ErrorMessage = "El apellido materno debe tener al menos 1 caracteres", MinimumLength = 1)]
         public string apellidom { get; set; }
 
         [Required(ErrorMessage = "El telefono es obligatorio")]
@@ -50,7 +50,7 @@ namespace RetoOxxoWeb.Model
         public string ConfirmarContraseña { get; set; }
 
         [Required(ErrorMessage = "El codigo postal es obligatorio")]
-        [Range(10000, 10004, ErrorMessage = "El codigo postal debe ser un número de 5 dígitos")]
+        [Range(10000, 90000, ErrorMessage = "El codigo postal debe ser un número de 5 dígitos")]
         public int? cp { get; set; }
 
         [Required(ErrorMessage = "La calle es obligatoria")]

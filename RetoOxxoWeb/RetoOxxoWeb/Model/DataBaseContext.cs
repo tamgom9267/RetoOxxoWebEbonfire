@@ -82,7 +82,6 @@ namespace RetoOxxoWeb.Model
 												apellidop = @apellidop,
 												apellidom = @apellidom,
 												telefono = @telefono,
-												fotografia = @fotografia,
 												tipo_empleado = @tipo_empleado,
 												contraseña = @contraseña,
 												calle = @calle,
@@ -97,7 +96,6 @@ namespace RetoOxxoWeb.Model
 								cmd.Parameters.AddWithValue("@apellidop", u.apellidop);
 								cmd.Parameters.AddWithValue("@apellidom", u.apellidom);
 								cmd.Parameters.AddWithValue("@telefono", u.telefono);
-								cmd.Parameters.AddWithValue("@fotografia", u.fotografia);
 								cmd.Parameters.AddWithValue("@tipo_empleado", u.tipo_empleado);
 								cmd.Parameters.AddWithValue("@contraseña", u.contraseña);
 								cmd.Parameters.AddWithValue("@calle", u.calle);

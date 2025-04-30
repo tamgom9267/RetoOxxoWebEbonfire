@@ -9,7 +9,6 @@ namespace RetoOxxoWeb.Pages
         [BindProperty(SupportsGet = true)]
         public int? param_usuario { get; set; }
 
-        // 🔵 Agregamos userFoto como propiedad pública
         public string userFoto { get; set; }
 
         public void OnGet()
@@ -20,7 +19,6 @@ namespace RetoOxxoWeb.Pages
                 Response.Redirect("/IniciarSesion");
             }
 
-            // 🔵 Cargamos la foto desde Session
             userFoto = HttpContext.Session.GetString("userFoto") 
                 ?? "https://cdn.pixabay.com/photo/2021/06/07/13/46/user-6318011_1280.png";
         }
