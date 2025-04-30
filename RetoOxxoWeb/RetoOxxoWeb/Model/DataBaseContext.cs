@@ -200,48 +200,52 @@ namespace RetoOxxoWeb.Model
 				}
 
 
-				public (int FoodService, int EjecucionPromociones, int EquiposCompletos, int Rotacion, int FaltanteEfectivo) GetMetricasDeTienda(int idUsuario)
+				public (int EfectividadHorarios, int FoodService, int Planogramas, int EjecucionPromociones, int ProgramaLealtad, int ClasificacionTiendas) GetPromedioIndicadoresOperativos(int idUsuario)
 				{
-						int foodService = 0;
-						int ejecucionPromociones = 0;
-						int equiposCompletos = 0;
-						int rotacion = 0;
-						int faltanteEfectivo = 0;
+					int efectividadHorarios = 0;
+					int foodService = 0;
+					int planogramas = 0;
+					int ejecucionPromociones = 0;
+					int programaLealtad = 0;
+					int clasificacionTiendas = 0;
 
-						using (MySqlConnection conexion = GetConnection())
+					using (MySqlConnection conexion = GetConnection())
+					{
+						conexion.Open();
+
+						string queryPromedios = @"
+							SELECT 
+								AVG(efectividad_horarios) AS efectividad_horarios,
+								AVG(food_service) AS food_service,
+								AVG(planogramas) AS planogramas,
+								AVG(ejecucion_promociones) AS ejecucion_promociones,
+								AVG(programa_lealtad) AS programa_lealtad,
+								AVG(clasificacion_tiendas) AS clasificacion_tiendas
+							FROM 
+								indicadores_operativos
+							WHERE 
+								id_usuario = @idUsuario;";
+
+						MySqlCommand cmd = new MySqlCommand(queryPromedios, conexion);
+						cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+
+						using (var reader = cmd.ExecuteReader())
 						{
-								conexion.Open();
-
-								string queryMetricas = @"
-										SELECT 
-												food_service,
-												ejecucion_promociones,
-												equipos_completos,
-												rotacion,
-												faltante_efectivo
-										FROM 
-												metricas_de_tienda
-										WHERE 
-												id_usuario = @idUsuarioActual;";
-
-								MySqlCommand cmd = new MySqlCommand(queryMetricas, conexion);
-								cmd.Parameters.AddWithValue("@idUsuarioActual", idUsuario);
-
-								using (var reader = cmd.ExecuteReader())
-								{
-										if (reader.Read())
-										{
-												foodService = Convert.ToInt32(reader["food_service"]);
-												ejecucionPromociones = Convert.ToInt32(reader["ejecucion_promociones"]);
-												equiposCompletos = Convert.ToInt32(reader["equipos_completos"]);
-												rotacion = Convert.ToInt32(reader["rotacion"]);
-												faltanteEfectivo = Convert.ToInt32(reader["faltante_efectivo"]);
-										}
-								}
+							if (reader.Read())
+							{
+								efectividadHorarios = Convert.ToInt32(reader["efectividad_horarios"]);
+								foodService = Convert.ToInt32(reader["food_service"]);
+								planogramas = Convert.ToInt32(reader["planogramas"]);
+								ejecucionPromociones = Convert.ToInt32(reader["ejecucion_promociones"]);
+								programaLealtad = Convert.ToInt32(reader["programa_lealtad"]);
+								clasificacionTiendas = Convert.ToInt32(reader["clasificacion_tiendas"]);
+							}
 						}
+					}
 
-						return (foodService, ejecucionPromociones, equiposCompletos, rotacion, faltanteEfectivo);
+					return (efectividadHorarios, foodService, planogramas, ejecucionPromociones, programaLealtad, clasificacionTiendas);
 				}
+
 
 
 				public string GetNombreUsuario(int idUsuario)
@@ -454,6 +458,41 @@ namespace RetoOxxoWeb.Model
 
 						return Logros;
 				}
+		
+		public List<InfoJuego> GetDatosJuego()
+				{
+					List<InfoJuego> DatosJuego = new List<InfoJuego>();
+					MySqlConnection conexion = GetConnection();
+					conexion.Open();
+
+					MySqlCommand cmd = new MySqlCommand(@"
+						SELECT id_info, historia, personajes_nombre, personaje_desc, 
+							como_ganar, como_perder, creditos, licensia, Controles
+						FROM InfoJuego;
+					", conexion);
+
+					using (var reader = cmd.ExecuteReader())
+					{
+						while (reader.Read())
+						{
+							DatosJuego.Add(new InfoJuego
+							{
+								id_info = reader.GetInt32("id_info"),
+								historia = reader["historia"] as string,
+								personajes_nombre = reader["personajes_nombre"] as string,
+								personaje_desc = reader["personaje_desc"] as string,
+								como_ganar = reader["como_ganar"] as string,
+								como_perder = reader["como_perder"] as string,
+								creditos = reader["creditos"] as string,
+								licensia = reader["licensia"] as string,
+								Controles = reader["Controles"] as string
+							});
+						}
+					}
+
+					return DatosJuego;
+				}
+
 		}
 
 }
