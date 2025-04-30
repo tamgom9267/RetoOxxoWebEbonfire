@@ -36,6 +36,7 @@ namespace RetoOxxoWeb.Pages.Perfil
             Console.WriteLine($"ID Usuario: {Usuario.id_usuario}");
             Console.WriteLine($"Nombre: {Usuario.nombre}");
             Console.WriteLine($"CP: {Usuario.cp}");
+            
 
             // Verifica que el modelo enviado cumpla con las validaciones
             if (!ModelState.IsValid)
