@@ -9,7 +9,7 @@ public class LeaderboardModel : PageModel
     private readonly DataBaseContext _context;
     public List<UsuarioPuntaje> Puntajes {get; set;}
     public List<UsuarioLogros> Logros {get; set;}
-    public string PremioDelMes { get; set; } = "Tarjeta de regalo OXXO de $500";  // Puedes cambiarlo dinámicamente
+    public string PremioDelMes { get; set; } = "Tarjeta de regalo OXXO de $500";
     public string PrimerLugar { get; set; }
     public string userFoto { get; set; }
     public LeaderboardModel()
