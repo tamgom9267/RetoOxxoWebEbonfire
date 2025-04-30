@@ -81,7 +81,7 @@ namespace RetoOxxoWeb.Model
 												nombre = @nombre,
 												apellidop = @apellidop,
 												apellidom = @apellidom,
-												telefono = @telefono,
+												telefono = @telefono,											
 												tipo_empleado = @tipo_empleado,
 												contraseña = @contraseña,
 												calle = @calle,
@@ -95,7 +95,7 @@ namespace RetoOxxoWeb.Model
 								cmd.Parameters.AddWithValue("@nombre", u.nombre);
 								cmd.Parameters.AddWithValue("@apellidop", u.apellidop);
 								cmd.Parameters.AddWithValue("@apellidom", u.apellidom);
-								cmd.Parameters.AddWithValue("@telefono", u.telefono);
+								cmd.Parameters.AddWithValue("@telefono", u.telefono);								
 								cmd.Parameters.AddWithValue("@tipo_empleado", u.tipo_empleado);
 								cmd.Parameters.AddWithValue("@contraseña", u.contraseña);
 								cmd.Parameters.AddWithValue("@calle", u.calle);
@@ -245,7 +245,6 @@ namespace RetoOxxoWeb.Model
 
 					return (efectividadHorarios, foodService, planogramas, ejecucionPromociones, programaLealtad, clasificacionTiendas);
 				}
-
 
 
 				public string GetNombreUsuario(int idUsuario)
@@ -458,8 +457,8 @@ namespace RetoOxxoWeb.Model
 
 						return Logros;
 				}
-		
-		public List<InfoJuego> GetDatosJuego()
+
+				public List<InfoJuego> GetDatosJuego()
 				{
 					List<InfoJuego> DatosJuego = new List<InfoJuego>();
 					MySqlConnection conexion = GetConnection();
@@ -492,7 +491,8 @@ namespace RetoOxxoWeb.Model
 
 					return DatosJuego;
 				}
-
 		}
+
+		
 
 }

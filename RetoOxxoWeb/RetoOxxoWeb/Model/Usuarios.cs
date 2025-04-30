@@ -28,12 +28,10 @@ namespace RetoOxxoWeb.Model
         [StringLength(10, ErrorMessage = "El telefono debe tener al menos 10 caracteres", MinimumLength = 10)]
         public string telefono { get; set; }
 
-        [Required(ErrorMessage = "La imagen es obligatorio")]
-        [StringLength(100, ErrorMessage = "La imagen debe tener al menos 10 caracteres", MinimumLength = 10)]
-        public string fotografia { get; set; }
+        public string? fotografia { get; set; }
 
         [NotMapped]
-        public IFormFile FotoArchivo { get; set; }
+        //public IFormFile FotoArchivo { get; set; }
 
 
         [Required(ErrorMessage = "El tipo de empleado es obligatorio")]

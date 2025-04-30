@@ -16,7 +16,7 @@
 <body>
     
     <h2 class="titulo-editar">Editar Perfil</h2>
-    <form method="post" class="formulario-perfil" enctype="multipart/form-data" novalidate>
+    <form method="post" class="formulario-perfil" enctype="multipart/form-data">
         <!-- Formulario que enviará los datos mediante método POST-->
 
         <input type="hidden" asp-for="Usuario.id_usuario"/>
@@ -103,11 +103,11 @@
                 <span asp-validation-for="Usuario.ciudad" class="error-message"></span>
             </div>
 
-            <!--  <div class="group-input">
+             <!--<div class="group-input">
                 <label asp-for="Usuario.fotografia">Fotografía</label>
-                <input asp-for="Usuario.fotografia" type="" class="form-control" accept="image/*" />
+                <input asp-for="Usuario.fotografia" type="file" class="form-control" accept="image/png*" />
                 <span asp-validation-for="Usuario.fotografia" class="error-message"></span>
-            </div> -->
+            </div>-->
 
             <div class="group-input">
                 <label asp-for="Usuario.cp">Código Postal</label>
