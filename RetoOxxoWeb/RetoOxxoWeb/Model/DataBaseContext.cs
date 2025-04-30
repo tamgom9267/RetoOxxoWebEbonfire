@@ -165,7 +165,7 @@ namespace RetoOxxoWeb.Model
 
 								string queryProgreso = @"
 										SELECT 
-												IFNULL(t.puntos, 0) AS progreso_taberna,
+												IFNULL(1000 - t.puntos, 0) AS progreso_taberna,
 												IFNULL(l.puntos, 0) AS progreso_laberinto,
 												IFNULL(d.puntos, 0) AS progreso_decision
 										FROM 
@@ -192,7 +192,7 @@ namespace RetoOxxoWeb.Model
 										}
 								}
 						}
-						int porcentajeTaberna = (progresoTaberna * 100) / 1000;
+						int porcentajeTaberna = ((progresoTaberna * 100)) / 1000;
 						int porcentajeLaberinto = (progresoLaberinto * 100) / 1000;
 						int porcentajeDecision = (progresoDecision * 100) / 1000;
 
@@ -365,8 +365,8 @@ namespace RetoOxxoWeb.Model
 								us.nombre AS nombre_usuario, -- Obtener el nombre del usuario
 								ROUND(COALESCE(SUM(d.puntos), 0), 2) AS puntos_decision,
 								ROUND(COALESCE(SUM(l.puntos), 0), 2) AS puntos_laberinto,
-								ROUND(COALESCE(SUM(t.puntos), 0), 2) AS puntos_taberna,
-								ROUND(COALESCE(SUM(d.puntos), 0) + COALESCE(SUM(l.puntos), 0) + COALESCE(SUM(t.puntos), 0), 2) AS puntos_totales
+								ROUND(COALESCE(SUM(1000 - t.puntos), 0), 2) AS puntos_taberna,
+								ROUND(COALESCE(SUM(d.puntos), 0) + COALESCE(SUM(l.puntos), 0) + COALESCE(SUM(1000 - t.puntos), 0), 2) AS puntos_totales
 						FROM (
 								SELECT DISTINCT id_usuario FROM decision 
 								UNION 
