@@ -35,8 +35,8 @@ namespace RetoOxxoWeb.Model
                         SELECT 
                             u.id_usuario,
                             u.nombre,
-                            COALESCE(SUM(t.puntos), 0) + COALESCE(SUM(d.puntos), 0) as total_puntos,
-                            RANK() OVER (ORDER BY COALESCE(SUM(t.puntos), 0) + COALESCE(SUM(d.puntos), 0) DESC) as ranking
+                            COALESCE(SUM(1000 - t.puntos), 0) + COALESCE(SUM(d.puntos), 0) as total_puntos,
+                            RANK() OVER (ORDER BY COALESCE(SUM(1000 - t.puntos), 0) + COALESCE(SUM(d.puntos), 0) DESC) as ranking
                         FROM usuario u
                         LEFT JOIN taberna t ON u.id_usuario = t.id_usuario
                         LEFT JOIN decision d ON u.id_usuario = d.id_usuario
@@ -119,8 +119,8 @@ namespace RetoOxxoWeb.Model
                         SELECT 
                             u.id_usuario,
                             u.nombre,
-                            COALESCE(SUM(t.puntos), 0) + COALESCE(SUM(d.puntos), 0) as total_puntos,
-                            RANK() OVER (ORDER BY COALESCE(SUM(t.puntos), 0) + COALESCE(SUM(d.puntos), 0) DESC) as ranking
+                            COALESCE(SUM(1000 - t.puntos), 0) + COALESCE(SUM(d.puntos), 0) as total_puntos,
+                            RANK() OVER (ORDER BY COALESCE(SUM(1000 - t.puntos), 0) + COALESCE(SUM(d.puntos), 0) DESC) as ranking
                         FROM usuario u
                         LEFT JOIN taberna t ON u.id_usuario = t.id_usuario
                         LEFT JOIN decision d ON u.id_usuario = d.id_usuario
